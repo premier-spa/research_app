@@ -12,6 +12,26 @@
 
 ActiveRecord::Schema.define(version: 2018_08_26_071122) do
 
+  create_table "labs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "majar"
+    t.string "about_us"
+    t.text "main_image"
+    t.text "sub_image"
+    t.string "purpose"
+    t.string "message"
+    t.string "facility"
+    t.string "address"
+    t.string "tel"
+    t.string "fax"
+    t.string "email"
+    t.string "access"
+    t.float "lon"
+    t.float "lat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

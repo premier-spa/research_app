@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Labs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Majar</th>
+      <th>About us</th>
+      <th>Main image</th>
+      <th>Sub image</th>
+      <th>Purpose</th>
+      <th>Message</th>
+      <th>Facility</th>
+      <th>Address</th>
+      <th>Tel</th>
+      <th>Fax</th>
+      <th>Email</th>
+      <th>Access</th>
+      <th>Lon</th>
+      <th>Lat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @labs.each do |lab| %>
+      <tr>
+        <td><%= lab.name %></td>
+        <td><%= lab.majar %></td>
+        <td><%= lab.about_us %></td>
+        <td><%= lab.main_image %></td>
+        <td><%= lab.sub_image %></td>
+        <td><%= lab.purpose %></td>
+        <td><%= lab.message %></td>
+        <td><%= lab.facility %></td>
+        <td><%= lab.address %></td>
+        <td><%= lab.tel %></td>
+        <td><%= lab.fax %></td>
+        <td><%= lab.email %></td>
+        <td><%= lab.access %></td>
+        <td><%= lab.lon %></td>
+        <td><%= lab.lat %></td>
+        <td><%= link_to 'Show', lab %></td>
+        <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
+        <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lab', new_lab_path %>
