@@ -8,8 +8,6 @@
       <th>Name</th>
       <th>Majar</th>
       <th>About us</th>
-      <th>Main image</th>
-      <th>Sub image</th>
       <th>Purpose</th>
       <th>Message</th>
       <th>Facility</th>
@@ -30,8 +28,6 @@
         <td><%= lab.name %></td>
         <td><%= lab.majar %></td>
         <td><%= lab.about_us %></td>
-        <td><%= lab.main_image %></td>
-        <td><%= lab.sub_image %></td>
         <td><%= lab.purpose %></td>
         <td><%= lab.message %></td>
         <td><%= lab.facility %></td>
@@ -42,9 +38,9 @@
         <td><%= lab.access %></td>
         <td><%= lab.lon %></td>
         <td><%= lab.lat %></td>
-        <td><%= link_to 'Show', lab %></td>
-        <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
-        <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '研究室詳細', lab %></td>
+        <td><%= link_to '研究室編集', edit_lab_path(lab) %></td>
+        <td><%= link_to '研究室削除', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -52,4 +48,4 @@
 
 <br>
 
-<%= link_to 'New Lab', new_lab_path %>
+<%= link_to '研究室作成', new_lab_path %>

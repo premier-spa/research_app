@@ -20,9 +20,9 @@
         <td><%= news.description %></td>
         <td><%= news.release_date %></td>
         <td><%= news.category.name %></td>
-        <td><%= link_to 'Show', lab_news_path(@lab, news) %></td>
-        <td><%= link_to 'Edit', edit_lab_news_path(@lab, news) %></td>
-        <td><%= link_to 'Destroy', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'ニュース詳細へ', lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'ニュース編集へ', edit_lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'ニュース削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New News', new_lab_news_path %>
+<%= link_to 'ニュース作成', new_lab_news_path %>
