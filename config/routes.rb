@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :labs do
     resources :news
   end
+
+  root to: 'labs#index'
 end
