@@ -1,6 +1,6 @@
 class LabsController < ApplicationController
   before_action :set_lab, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_news, only: [:show]
   # GET /labs
   # GET /labs.json
   def index
@@ -65,6 +65,11 @@ class LabsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lab
       @lab = Lab.find(params[:id])
+    end
+
+    # lab に紐づくニュース一覧を取得
+    def set_news
+      @news = News.where(lab_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

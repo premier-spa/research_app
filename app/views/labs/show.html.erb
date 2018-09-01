@@ -75,5 +75,35 @@
   <%= @lab.lat %>
 </p>
 
+
+<h1>News</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Release date</th>
+      <th>Category</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+      <tr>
+        <td><%= news.title %></td>
+        <td><%= news.description %></td>
+        <td><%= news.release_date %></td>
+        <td><%= news.category.name %></td>
+        <td><%= link_to 'Show', lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'Edit', edit_lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'Destroy', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <%= link_to 'Edit', edit_lab_path(@lab) %> |
 <%= link_to 'Back', labs_path %>

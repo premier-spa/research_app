@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :set_lab
 
   # GET /news
   # GET /news.json
@@ -28,11 +29,9 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
-        format.json { render :show, status: :created, location: @news }
+        format.html { render :show, notice: 'News was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +41,9 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
-        format.json { render :show, status: :ok, location: @news }
+        format.html { render :show, notice: 'News was successfully created.' }
       else
         format.html { render :edit }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,8 +64,13 @@ class NewsController < ApplicationController
       @news = News.find(params[:id])
     end
 
+    # lab を取得
+    def set_lab
+      @lab = Lab.find(params[:lab_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :description, :release_date)
+      params.require(:news).permit(:title, :description, :release_date, :category_id, :lab_id)
     end
 end

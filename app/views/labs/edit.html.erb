@@ -3,4 +3,5 @@
 <%= render 'form', lab: @lab %>
 
 <%= link_to 'Show', @lab %> |
-<%= link_to 'Back', labs_path %>
+<%= link_to 'Back', labs_path %> |
+<%= link_to "List of lab's news", lab_news_index_path(@lab) %>
