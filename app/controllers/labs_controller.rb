@@ -1,6 +1,8 @@
 class LabsController < ApplicationController
   before_action :set_lab, only: [:show, :edit, :update, :destroy]
   before_action :set_news, only: [:show]
+  before_action :authenticate_user!, except: [:show]
+
   # GET /labs
   # GET /labs.json
   def index
