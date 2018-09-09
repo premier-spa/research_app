@@ -9,5 +9,4 @@ Rails.application.routes.draw do
     resources :news
   end
 
-  root to: 'labs#index'
 end
