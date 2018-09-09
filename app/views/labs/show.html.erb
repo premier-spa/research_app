@@ -62,6 +62,13 @@
   <%= @lab.lat %>
 </p>
 
+<% if @lab.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @lab.image, :size => "100x100" %>
+  </p>
+<% end %>
+
 
 <h2>ニュース一覧</h2>
 

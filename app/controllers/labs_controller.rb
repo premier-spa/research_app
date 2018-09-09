@@ -25,6 +25,9 @@ class LabsController < ApplicationController
   # POST /labs.json
   def create
     @lab = Lab.new(lab_params)
+    if image = params[:lab][:image]
+      @lab.image.attach(image)
+    end
 
     respond_to do |format|
       if @lab.save

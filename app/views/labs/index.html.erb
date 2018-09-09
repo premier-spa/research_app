@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Majar</th>
       <th>About us</th>
@@ -25,6 +26,11 @@
   <tbody>
     <% @labs.each do |lab| %>
       <tr>
+        <% if lab.image.attached? %>
+          <td><%= image_tag lab.image, :size => "30x30" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= lab.name %></td>
         <td><%= lab.majar %></td>
         <td><%= lab.about_us %></td>
