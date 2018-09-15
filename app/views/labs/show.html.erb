@@ -98,6 +98,7 @@
   </tbody>
 </table>
 
-
-<%= link_to '編集画面へ', edit_lab_path(@lab) %> |
-<%= link_to '研究室一覧へ', labs_path %>
+<% if @lab.is_lab_user?(current_user) %>
+  <%= link_to '編集画面へ', edit_lab_path(@lab) %> |
+  <%= link_to '研究室一覧へ', labs_path %>
+<% end %>

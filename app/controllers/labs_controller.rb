@@ -1,7 +1,10 @@
 class LabsController < ApplicationController
   before_action :set_lab, only: [:show, :edit, :update, :destroy]
   before_action :set_news, only: [:show]
-  before_action :authenticate_user!, except: [:show]
+
+  # lab のメンバーではない人がアクセスしたときに弾く
+  before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index]
 
   # GET /labs
   # GET /labs.json
@@ -69,8 +72,7 @@ class LabsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lab
-      lab_user = LabUser.find_by(user_id: current_user.id)
-      @lab = lab_user.lab
+      @lab = Lab.find(params[:id])
     end
 
     # lab に紐づくニュース一覧を取得
@@ -81,5 +83,12 @@ class LabsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lab_params
       params.require(:lab).permit(:name, :majar, :about_us, :main_image, :sub_image, :purpose, :message, :facility, :address, :tel, :fax, :email, :access, :lon, :lat)
+    end
+
+    def authenticate_lab_user?
+      authenticate_user!
+      unless @lab.is_lab_user?(current_user)
+        redirect_to new_user_session_url
+      end
     end
 end

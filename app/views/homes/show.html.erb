@@ -1,2 +1,11 @@
 <h1>こんにちは、<%= current_user.id %>さん</h1>
 <p>ユーザー用ページです。</p>
+
+<% if current_user.has_labs? %>
+    <h2>所属研究室一覧</h2>
+    <% current_user.labs.each do |lab| %>
+        <p><%= link_to lab.name, lab %></p>
+    <% end %>
+<% end %>
+
+<%= link_to '研究室作成', new_lab_path %>
