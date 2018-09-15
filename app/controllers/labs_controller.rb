@@ -26,15 +26,15 @@ class LabsController < ApplicationController
   # POST /labs
   # POST /labs.json
   def create
-    @lab = Lab.new(lab_params)
+    @lab = current_user.labs.build(lab_params)
     if image = params[:lab][:image]
       @lab.image.attach(image)
     end
 
     respond_to do |format|
-      if @lab.save
-        format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
-        format.json { render :show, status: :created, location: @lab }
+      if current_user.save
+          format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
+          format.json { render :show, status: :created, location: @lab }
       else
         format.html { render :new }
         format.json { render json: @lab.errors, status: :unprocessable_entity }
@@ -69,7 +69,8 @@ class LabsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lab
-      @lab = Lab.find(params[:id])
+      lab_user = LabUser.find_by(user_id: current_user.id)
+      @lab = lab_user.lab
     end
 
     # lab に紐づくニュース一覧を取得

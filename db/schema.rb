@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_033843) do
+ActiveRecord::Schema.define(version: 2018_09_09_040608) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2018_09_09_033843) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lab_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "lab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_id"], name: "index_lab_users_on_lab_id"
+    t.index ["user_id"], name: "index_lab_users_on_user_id"
   end
 
   create_table "labs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,6 +93,8 @@ ActiveRecord::Schema.define(version: 2018_09_09_033843) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lab_users", "labs"
+  add_foreign_key "lab_users", "users"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
 end
