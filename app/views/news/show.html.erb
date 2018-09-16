@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @news.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @news.description %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @news.release_date %>
+</p>
+
+<p>
+  <strong> Category</strong>
+  <%= @news.category.name %>
+</p>
+
+<%= link_to 'ニュース詳細', edit_lab_news_path(@lab, @news) %> |
+<%= link_to '研究室詳細', lab_path(@lab) %>

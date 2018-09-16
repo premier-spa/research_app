@@ -1,0 +1,97 @@
+<%= form_with(model: lab, local: true) do |form| %>
+  <% if lab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lab.errors.count, "error") %> prohibited this lab from being saved:</h2>
+
+      <ul>
+      <% lab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :majar %>
+    <%= form.text_field :majar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :about_us %>
+    <%= form.text_field :about_us %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_image %>
+    <%= form.text_area :main_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sub_image %>
+    <%= form.text_area :sub_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purpose %>
+    <%= form.text_field :purpose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_field :message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :facility %>
+    <%= form.text_field :facility %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tel %>
+    <%= form.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fax %>
+    <%= form.text_field :fax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :access %>
+    <%= form.text_field :access %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lon %>
+    <%= form.text_field :lon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lat %>
+    <%= form.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

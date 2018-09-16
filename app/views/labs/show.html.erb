@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @lab.name %></h1>
+
+<p>
+  <strong>Majar:</strong>
+  <%= @lab.majar %>
+</p>
+
+<p>
+  <strong>About us:</strong>
+  <%= @lab.about_us %>
+</p>
+
+<p>
+  <strong>Purpose:</strong>
+  <%= @lab.purpose %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @lab.message %>
+</p>
+
+<p>
+  <strong>Facility:</strong>
+  <%= @lab.facility %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @lab.address %>
+</p>
+
+<p>
+  <strong>Tel:</strong>
+  <%= @lab.tel %>
+</p>
+
+<p>
+  <strong>Fax:</strong>
+  <%= @lab.fax %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @lab.email %>
+</p>
+
+<p>
+  <strong>Access:</strong>
+  <%= @lab.access %>
+</p>
+
+<p>
+  <strong>Lon:</strong>
+  <%= @lab.lon %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @lab.lat %>
+</p>
+
+<% if @lab.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @lab.image, :size => "100x100" %>
+  </p>
+<% end %>
+
+
+<h2>ニュース一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Release date</th>
+      <th>Category</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+      <tr>
+        <td><%= news.title %></td>
+        <td><%= news.description %></td>
+        <td><%= news.release_date %></td>
+        <td><%= news.category.name %></td>
+        <td><%= link_to 'Show', lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'Edit', edit_lab_news_path(@lab, news) %></td>
+        <td><%= link_to 'Destroy', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @lab.is_lab_user?(current_user) %>
+  <%= link_to '編集画面へ', edit_lab_path(@lab) %> |
+  <%= link_to '研究室一覧へ', labs_path %>
+<% end %>

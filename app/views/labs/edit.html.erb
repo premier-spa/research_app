@@ -1,0 +1,7 @@
+<h1>Editing Lab</h1>
+
+<%= render 'form', lab: @lab %>
+
+<%= link_to '研究室詳細', @lab %> |
+<%= link_to '研究室一覧', labs_path %> |
+<%= link_to "ニュース一覧", lab_news_index_path(@lab) %>
