@@ -1,0 +1,15 @@
+<%= form_with model: [@lab, @album], local: true  do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br><br>
+  <p>画像</p>
+  <%= form.file_field :images, multiple: true %><br>
+  <%= form.hidden_field :lab_id, value: @lab.id %>
+  <% if @album.images.attached? %>
+    <p>現在登録されている画像（削除するものはチェックしてください）</p>
+    <% @album.images.each do |image| %>
+      <%= form.check_box :image_ids, {:multiple => true}, image.id, false %>
+      <%= image_tag image, :size=>"100x100" %> <br>
+    <% end %>
+  <% end %>
+  <%= form.submit %>
+<% end %>
