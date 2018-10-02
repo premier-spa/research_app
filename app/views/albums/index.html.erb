@@ -1,0 +1,35 @@
+<h1>album</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>image</th>
+      <th>created date</th>
+      <th>updated date</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.name %></td>
+        <td>
+          <% if album.images.attached? %>
+            <%= image_tag album.images.first, :size=> "50x50" %>
+          <% end %>
+        </td>
+        <td><%= album.created_at %></td>
+        <td><%= album.updated_at %></td>
+        <td><%= link_to 'アルバム詳細へ', lab_album_path(@lab, album) %></td>
+        <td><%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, album) %></td>
+        <td><%= link_to 'アルバム削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'アルバム作成', new_lab_album_path %>

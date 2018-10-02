@@ -1,0 +1,7 @@
+<% if @album.images.attached? %>
+  <% @album.images.each do |image| %>
+    <%= image_tag image, :size=>"100x100" %> <br>
+  <% end %>
+  <%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, @album) %> |
+  <%= link_to 'アルバム削除', lab_album_path(@lab, @album), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
