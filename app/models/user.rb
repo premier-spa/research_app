@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :lab_users
   has_many :labs, through: :lab_users
 
+  enum status: {student: 0, professor: 1, company: 2}
+  validates :status, presence: true
+
   # user が研究室に所属しているか
   def has_labs?
     if self.labs
@@ -14,10 +17,5 @@ class User < ApplicationRecord
     end
     return false
   end
-  
-  enum type: {student: 0, professor: 1, company: 2}
-end
 
-# class User < ActiveRecord::Base
-#   enum type: {student: 0, professor: 1, company: 2}
-# end
+end
