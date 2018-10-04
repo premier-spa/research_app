@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :lab_users
   has_many :labs, through: :lab_users
 
+  # set status of User
   enum status: {student: 0, professor: 1, company: 2}
   validates :status, presence: true
 
