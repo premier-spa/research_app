@@ -13,5 +13,11 @@ class User < ApplicationRecord
         return true
     end
     return false
+  end
+  
+  enum type: {student: 0, professor: 1, company: 2}
 end
-end
+
+# class User < ActiveRecord::Base
+#   enum type: {student: 0, professor: 1, company: 2}
+# end
