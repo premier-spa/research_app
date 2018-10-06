@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Labs</h1>
+<h1>SearchLabs</h1>
 
+<%= form_tag("/labs/", method: "get") do %>
+  <%= label_tag(:query, "Search for:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<% unless @labs.nil? %>
 <table>
   <thead>
     <tr>
@@ -45,11 +52,13 @@
         <td><%= lab.lon %></td>
         <td><%= lab.lat %></td>
         <td><%= link_to '研究室詳細', lab %></td>
+        <% if lab.is_lab_user? current_user %>
         <td><%= link_to '研究室編集', edit_lab_path(lab) %></td>
         <td><%= link_to '研究室削除', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<% end %>

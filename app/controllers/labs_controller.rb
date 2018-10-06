@@ -10,7 +10,7 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.all
+    @labs = Lab.search(params[:query])
   end
 
   # GET /labs/1
