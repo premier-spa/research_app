@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :lab_users
   has_many :labs, through: :lab_users
 
+  # for ActiveStorage
+  has_one_attached :image
+
   # set status of User
   enum user_type: {student: 0, professor: 1, company: 2}
   validates :user_type, presence: true
