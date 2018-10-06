@@ -7,10 +7,13 @@ class LabsController < ApplicationController
   before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index]
 
+  # 検索 1 ページあたりの研究室数
+  PER_PAGE_LABS_NUM = 5
+
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.search(params[:query])
+    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(params[:query])
   end
 
   # GET /labs/1
