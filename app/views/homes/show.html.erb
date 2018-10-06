@@ -1,6 +1,15 @@
 <h1>こんにちは、<%= current_user.id %>さん</h1>
 <p>ユーザー用ページです。</p>
 
+<!-- Show user icon -->
+<% if current_user.image.attached? %>
+  <p>
+    <strong>Your Icon:</strong>
+    <%= image_tag current_user.image, :size => "100x100" %>
+  </p>
+<% end %>
+
+
 <% if current_user.has_labs? %>
     <h2>所属研究室一覧</h2>
     <% current_user.labs.each do |lab| %>
