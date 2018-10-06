@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # set status of User
   enum user_type: {student: 0, professor: 1, company: 2}
   validates :user_type, presence: true
+  validates :description, presence: true, length: {minimum: 5, maximum: 256}
 
   # user が研究室に所属しているか
   def has_labs?

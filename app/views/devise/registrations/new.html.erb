@@ -26,6 +26,11 @@
     <%= f.select :user_type, User.user_types.keys %>
   </div>
 
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description%>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
