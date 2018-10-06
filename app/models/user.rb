@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :labs, through: :lab_users
 
   # set status of User
-  enum status: {student: 0, professor: 1, company: 2}
-  validates :status, presence: true
+  enum user_type: {student: 0, professor: 1, company: 2}
+  validates :user_type, presence: true
 
   # user が研究室に所属しているか
   def has_labs?
