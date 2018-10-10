@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
+  before_action :set_lab
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /works
   # GET /works.json
@@ -65,6 +67,11 @@ class WorksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_work
       @work = Work.find(params[:id])
+    end
+
+    # lab を取得
+    def set_lab
+      @lab = Lab.find(params[:lab_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
