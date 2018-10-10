@@ -10,5 +10,5 @@
   <%= @work.description %>
 </p>
 
-<%= link_to '編集する', edit_work_path(@work) %> |
-<%= link_to 'Back', lab_path(@lab) %>
+<%= link_to '研究内容編集', edit_lab_work_path(@lab, @work) %> |
+<%= link_to '研究室詳細', lab_path(@lab) %>

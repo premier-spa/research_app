@@ -2,5 +2,5 @@
 
 <%= render 'form', work: @work %>
 
-<%= link_to 'Show', @work %> |
-<%= link_to 'Back', works_path %>
+<%= link_to '研究内容詳細', lab_work_path(@lab, @work) %> |
+<%= link_to '研究室詳細', lab_path(@lab) %>

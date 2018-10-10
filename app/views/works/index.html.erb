@@ -16,9 +16,9 @@
       <tr>
         <td><%= work.name %></td>
         <td><%= work.description %></td>
-        <td><%= link_to 'Show', work %></td>
-        <td><%= link_to 'Edit', edit_work_path(work) %></td>
-        <td><%= link_to 'Delete this research content', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '研究内容詳細', lab_work_path(@lab, work) %></td>
+        <td><%= link_to '研究内容編集', edit_lab_work_path(@lab, work) %></td>
+        <td><%= link_to '研究内容削除', lab_work_path(@lab, work), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to '新しく研究内容を追加する', new_work_path %>
+<%= link_to '新しく研究内容を追加する', new_lab_work_path %>
