@@ -30,11 +30,9 @@ class WorksController < ApplicationController
 
     respond_to do |format|
       if @work.save
-        format.html { redirect_to @work, notice: 'Work was successfully created.' }
-        format.json { render :show, status: :created, location: @work }
+        format.html { render :show, notice: 'Works was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @work.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +42,9 @@ class WorksController < ApplicationController
   def update
     respond_to do |format|
       if @work.update(work_params)
-        format.html { redirect_to @work, notice: 'Work was successfully updated.' }
-        format.json { render :show, status: :ok, location: @work }
+        format.html { render :show, notice: 'Work was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @work.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,8 +54,7 @@ class WorksController < ApplicationController
   def destroy
     @work.destroy
     respond_to do |format|
-      format.html { redirect_to works_url, notice: 'Work was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to lab_path(@lab)}
     end
   end
 
@@ -76,6 +71,6 @@ class WorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      params.require(:work).permit(:name, :description)
+      params.require(:work).permit(:name, :description, :lab_id)
     end
 end
