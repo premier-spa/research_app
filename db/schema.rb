@@ -103,9 +103,19 @@ ActiveRecord::Schema.define(version: 2018_10_06_033253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "works", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "lab_id"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_id"], name: "index_works_on_lab_id"
+  end
+
   add_foreign_key "albums", "labs"
   add_foreign_key "lab_users", "labs"
   add_foreign_key "lab_users", "users"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
+  add_foreign_key "works", "labs"
 end

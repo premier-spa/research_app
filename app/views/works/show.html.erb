@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @work.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @work.description %>
+</p>
+
+<%= link_to '研究内容編集', edit_lab_work_path(@lab, @work) %> |
+<%= link_to '研究室詳細', lab_path(@lab) %>

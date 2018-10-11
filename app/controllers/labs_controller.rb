@@ -2,6 +2,7 @@ class LabsController < ApplicationController
   before_action :set_lab, only: [:show, :edit, :update, :destroy]
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
+  before_action :set_works, only: [:show]
 
   # lab のメンバーではない人がアクセスしたときに弾く
   before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
@@ -87,6 +88,11 @@ class LabsController < ApplicationController
     # lab に紐づくアルバム一覧を取得
     def set_albums
       @albums = Album.where(lab_id: params[:id])
+    end
+
+    # lab に紐づく研究内容一覧を取得
+    def set_works
+      @works = Work.where(lab_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
