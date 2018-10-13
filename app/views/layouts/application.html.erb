@@ -31,11 +31,14 @@
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><%= link_to 'GoodLab', root_path%></li>
                                 <li><%= link_to current_user.id, homes_show_path %></li>
                                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
                             </ul>
                         </div>
+
+                        <!-- メニュー -->
                         <div class="nav-content">
                             <ul class="tabs tabs-transparent">
                                 <li class="tab"><a href="#">Home(リンク未設定)</a></li>
@@ -49,8 +52,9 @@
                         </div>
                     </nav>
 
-                    <!-- サイド ナビゲーションバー -->
+                    <!-- サイド ナビゲーションバー 動作は未設定-->
                     <ul class="sidenav" id="mobile-demo">
+                        <li><%= link_to 'GoodLab', root_path%></li>
                         <li><%= link_to current_user.id, homes_show_path %></li>
                         <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -70,6 +74,12 @@
                             </ul>
                         </div>
                     </nav>
+
+                    <!-- サイド ナビゲーションバー 動作は未設定-->
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                        <li><%= link_to 'ログイン', new_user_session_path %></li>
+                    </ul>
                 <% end %>
             </div>
         </header>
