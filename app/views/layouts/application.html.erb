@@ -32,9 +32,9 @@
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li><%= link_to 'GoodLab', root_path%></li>
-                                <li><%= link_to current_user.id, homes_show_path %></li>
-                                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                                <li><%= link_to current_user.id, homes_show_path, class: "btn" %></li>
+                                <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn" %></li>
+                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn" %></li>
                             </ul>
                         </div>
 
@@ -60,17 +60,13 @@
                         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
                     </ul>
 
-                    <div id="test1" class="col s12">Test 1</div>
-                    <div id="test2" class="col s12">Test 2</div>
-                    <div id="test3" class="col s12">Test 3</div>
-                    <div id="test4" class="col s12">Test 4</div>
                 <% else %>
                     <nav>
                         <div class="nav-wrapper">
                             <%= link_to 'GoodLab', root_path, class: "brand-logo" %>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-                                <li><%= link_to 'ログイン', new_user_session_path %></li>
+                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn" %></li>
+                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
                             </ul>
                         </div>
                     </nav>
@@ -89,7 +85,14 @@
 
         <%= yield %>
 
-
+        <!-- フッター -->
+        <footer class = page-footer>
+            <div class="footer-copyright">
+                <div class="container center">
+                    Copyright© KHKO Lab. All rights reserved.
+                </div>
+            </div>
+        </footer>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
