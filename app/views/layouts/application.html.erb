@@ -38,16 +38,28 @@
                         </div>
                         <div class="nav-content">
                             <ul class="tabs tabs-transparent">
-                                <li class="tab"></li>
-                                <li class="tab"></li>
-                                <li class="tab"></li>
-                                <li class="tab"></li>
-                                <li class="tab"></li>
-                                <li class="tab"></li>
-                                <li class="tab"></li>
+                                <li class="tab"><a href="#">Home(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">About us(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">Research(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">Publications(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">People(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">Photos(リンク未設定)</a></li>
+                                <li class="tab"><a href="#">Contact us(リンク未設定)</a></li>
                             </ul>
                         </div>
                     </nav>
+
+                    <!-- サイド ナビゲーションバー -->
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><%= link_to current_user.id, homes_show_path %></li>
+                        <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                    </ul>
+
+                    <div id="test1" class="col s12">Test 1</div>
+                    <div id="test2" class="col s12">Test 2</div>
+                    <div id="test3" class="col s12">Test 3</div>
+                    <div id="test4" class="col s12">Test 4</div>
                 <% else %>
                     <nav>
                         <div class="nav-wrapper">
