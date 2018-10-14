@@ -20,34 +20,34 @@
         <header>
             <div class = "navbar-fixed">
                 <% if user_signed_in? %>
-                    <nav class = "nav-extended">
+                    <nav class = "nav-extended white">
                         <div class = "nav-wrapper">
                             <!-- has_labsが修正されるまでの応急処置 -->
                             <% if current_user.get_prime_lab %>
                             <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
-                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo" %>
+                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo grey-text text-darken-2" %>
                             <% else %>
                                 <a href="#" class="brand-logo">ここに研究室名を表示</a>
                             <% end %>
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'GoodLab', root_path %></li>
-                                <li><%= link_to current_user.id, homes_show_path, class: "btn" %></li>
-                                <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn" %></li>
-                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn" %></li>
+                                <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
+                                <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
 
                         <!-- メニュー -->
                         <div class="nav-content">
                             <ul class="tabs tabs-transparent">
-                                <li class="tab"><a href="#">Home</a></li>
-                                <li class="tab"><a href="#">About us</a></li>
-                                <li class="tab"><a href="#">Research</a></li>
-                                <li class="tab"><a href="#">Publications</a></li>
-                                <li class="tab"><a href="#">People</a></li>
-                                <li class="tab"><a href="#">Photos</a></li>
-                                <li class="tab"><a href="#">Contact us</a></li>
+                                <li class="tab"><%= link_to 'Home', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'Research', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'Publications', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'Photos', root_path, class: "grey-text text-darken-2" %></li>
+                                <li class="tab"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
                             </ul>
                         </div>
                     </nav>
@@ -61,12 +61,12 @@
                     </ul>
 
                 <% else %>
-                    <nav>
+                    <nav class="white">
                         <div class="nav-wrapper">
-                            <%= link_to 'GoodLab', root_path, class: "brand-logo" %>
+                            <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn" %></li>
-                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
+                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
                     </nav>
@@ -86,8 +86,8 @@
         <%= yield %>
 
         <!-- フッター -->
-        <footer class = page-footer>
-            <div class="footer-copyright">
+        <footer class = "page-footer white">
+            <div class="footer-copyright white grey-text text-darken-2">
                 <div class="container center">
                     Copyright© KHKO Lab. All rights reserved.
                 </div>
