@@ -74,6 +74,18 @@ class LabsController < ApplicationController
     end
   end
 
+  # GET /labs/1/about
+  def about
+  end
+
+  # GET /labs/1/people
+  def people
+  end
+
+  # GET /labs/1/contact
+  def contact
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lab
