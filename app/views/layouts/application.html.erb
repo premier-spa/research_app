@@ -16,18 +16,18 @@
 
     </head>
 
-    <body>
+    <body class ="grey lighten-5">
         <header>
             <div class = "navbar-fixed">
                 <% if user_signed_in? %>
                     <nav class = "nav-extended white">
                         <div class = "nav-wrapper">
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <!-- has_labsが修正されるまでの応急処置 -->
                             <% if current_user.get_prime_lab %>
                             <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
                                 <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo grey-text text-darken-2" %>
                             <% end %>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
@@ -93,6 +93,7 @@
                 </div>
             </div>
         </footer>
+
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
