@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h4>Sign up</h4>
 
 <div class="row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -24,9 +24,9 @@
 
   <!-- email, password以外の要素 -->
     <div class="input-field col s12">
-      <i class="material-icons prefix">settings</i>
-      <%= f.label :user_type%>
-      <%= f.select :user_type, User.user_types.keys, class: "browser-default" %>
+      <p><i class="material-icons prefix">settings</i>
+      <%= f.label :user_type%></p>
+      <%= f.select :user_type, User.user_types.keys %>
     </div>
 
     <div class="input-field col s12">
@@ -36,9 +36,9 @@
     </div>
 
     <div class="input-field col s12">
-      <i class="material-icons prefix">tag_faces</i>
-      <%= f.label :image %>
-      <%= f.file_field :image , class: "grey-text text-darken-5" %>
+      <p><i class="material-icons prefix">tag_faces</i>
+      <%= f.label :image %></p>
+      <%= f.file_field :image%>
     </div>
 
     <div class="row">

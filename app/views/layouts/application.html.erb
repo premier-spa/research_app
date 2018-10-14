@@ -15,19 +15,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body class ="grey lighten-5">
+    <body class="grey lighten-5">
         <header>
-            <div class = "navbar-fixed">
-                <% if user_signed_in? %>
-                    <nav class = "nav-extended white">
-                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
-                        <div class = "nav-wrapper">
+            <% if user_signed_in? %>
+                <div class="navbar-fixed">
+                    <nav class="nav-extended white">
+                        <div class="nav-wrapper">
                             <!-- has_labsが修正されるまでの応急処置 -->
                             <% if current_user.get_prime_lab %>
                             <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
                                 <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo grey-text text-darken-2" %>
                             <% end %>
-
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
                                 <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
@@ -51,27 +50,33 @@
                             </div>
                         <% end %>
                     </nav>
+                </div>
 
-                    <!-- サイド ナビゲーションバー 動作は未設定-->
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><%= link_to 'GoodLab', root_path %></li>
-                        <li><%= link_to current_user.id, homes_show_path %></li>
-                        <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-                        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-                    </ul>
-
+                <!-- サイド ナビゲーションバー-->
+                <ul class="sidenav" id="mobile-demo">
+                    <li><%= link_to 'GoodLab', root_path %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to current_user.id, homes_show_path %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                </ul>
                 <% else %>
-                    <nav class="white">
-                        <div class="nav-wrapper">
-                            <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
-                            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
-                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
-                            </ul>
-                        </div>
-                    </nav>
+                    <div class="navbar-fixed">
+                        <nav class="white">
+                            <div class="nav-wrapper">
+                                <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
+                                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
+                                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                    <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                    <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
 
-                    <!-- サイド ナビゲーションバー 動作は未設定-->
+                    <!-- サイド ナビゲーションバー-->
                     <ul class="sidenav" id="mobile-demo">
                         <li><%= link_to 'サインアップ', new_user_registration_path %></li>
                         <li><%= link_to 'ログイン', new_user_session_path %></li>
@@ -80,8 +85,8 @@
             </div>
         </header>
 
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+<!--         <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p> -->
 
         <%= yield %>
 
@@ -97,12 +102,18 @@
         <!-- Compiled and minified JavaScript -->
         <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- For select box -->
         <script>
             $(document).ready(function(){
                 $('select').formSelect();
             });
         </script>
-
+        <!-- For Sidenav -->
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+             });
+        </script>
 
     </body>
 </html>
