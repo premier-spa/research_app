@@ -23,9 +23,9 @@
                     <nav class = "nav-extended">
                         <div class = "nav-wrapper">
                             <!-- has_labsが修正されるまでの応急処置 -->
-                            <% if current_user.labs[0] %>
+                            <% if current_user.get_prime_lab %>
                             <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
-                                <%= link_to current_user.labs[0].name, current_user.labs[0] , class: "brand-logo"%>
+                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo" %>
                             <% else %>
                                 <a href="#" class="brand-logo">ここに研究室名を表示</a>
                             <% end %>
