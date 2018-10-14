@@ -23,4 +23,11 @@ class User < ApplicationRecord
     return false
   end
 
+  def get_prime_lab
+    # if条件にはhas_labs?が修正されたらそれを使う？
+    if self.labs[0]
+      return self.labs[0]
+    end
+  end
+
 end

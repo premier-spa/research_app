@@ -6,25 +6,94 @@
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     </head>
 
     <body>
         <header>
-            <nav>
+            <div class = "navbar-fixed">
                 <% if user_signed_in? %>
-                <strong><%= link_to current_user.id, homes_show_path %></strong>
-                <%= link_to 'プロフィール変更', edit_user_registration_path %>
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <% else %>
-                <%= link_to 'サインアップ', new_user_registration_path %>
-                <%= link_to 'ログイン', new_user_session_path %>
+                    <nav class = "nav-extended">
+                        <div class = "nav-wrapper">
+                            <!-- has_labsが修正されるまでの応急処置 -->
+                            <% if current_user.get_prime_lab %>
+                            <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
+                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo" %>
+                            <% else %>
+                                <a href="#" class="brand-logo">ここに研究室名を表示</a>
+                            <% end %>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><%= link_to 'GoodLab', root_path %></li>
+                                <li><%= link_to current_user.id, homes_show_path, class: "btn" %></li>
+                                <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn" %></li>
+                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn" %></li>
+                            </ul>
+                        </div>
+
+                        <!-- メニュー -->
+                        <div class="nav-content">
+                            <ul class="tabs tabs-transparent">
+                                <li class="tab"><a href="#">Home</a></li>
+                                <li class="tab"><a href="#">About us</a></li>
+                                <li class="tab"><a href="#">Research</a></li>
+                                <li class="tab"><a href="#">Publications</a></li>
+                                <li class="tab"><a href="#">People</a></li>
+                                <li class="tab"><a href="#">Photos</a></li>
+                                <li class="tab"><a href="#">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <!-- サイド ナビゲーションバー 動作は未設定-->
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><%= link_to 'GoodLab', root_path %></li>
+                        <li><%= link_to current_user.id, homes_show_path %></li>
+                        <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                    </ul>
+
+                <% else %>
+                    <nav>
+                        <div class="nav-wrapper">
+                            <%= link_to 'GoodLab', root_path, class: "brand-logo" %>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn" %></li>
+                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn" %></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <!-- サイド ナビゲーションバー 動作は未設定-->
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                        <li><%= link_to 'ログイン', new_user_session_path %></li>
+                    </ul>
                 <% end %>
-            </nav>
+            </div>
         </header>
 
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
 
         <%= yield %>
+
+        <!-- フッター -->
+        <footer class = page-footer>
+            <div class="footer-copyright">
+                <div class="container center">
+                    Copyright© KHKO Lab. All rights reserved.
+                </div>
+            </div>
+        </footer>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
