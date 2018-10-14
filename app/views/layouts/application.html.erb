@@ -40,12 +40,12 @@
                             <!-- メニュー -->
                             <div class="nav-content">
                                 <ul class="tabs tabs-transparent">
-                                    <li class="tab"><%= link_to 'Home', root_path, class: "grey-text text-darken-2" %></li>
+                                    <li class="tab"><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
                                     <li class="tab"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Research', root_path, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Publications', root_path, class: "grey-text text-darken-2" %></li>
+                                    <li class="tab"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                                    <li class="tab"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
                                     <li class="tab"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Photos', root_path, class: "grey-text text-darken-2" %></li>
+                                    <li class="tab"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
                                     <li class="tab"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
                                 </ul>
                             </div>
