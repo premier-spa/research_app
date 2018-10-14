@@ -4,7 +4,7 @@
     <h3>News</h3>
   </div>
   <div class="col s12">
-    <% @news.each do |work| %>
+    <% @news.each do |news| %>
       <div class="col s12">
         <div class="card horizontal hoverable">
           <div class="card-image">
@@ -13,7 +13,7 @@
           <div class="card-stacked">
             <div class ="card-content">
               <span class="card-title">
-                <%= news.name %>
+                <%= news.title %>
               </span>
               <p><%= news.description %></p>
             </div>

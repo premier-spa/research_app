@@ -25,8 +25,8 @@
   <!-- email, password以外の要素 -->
     <div class="input-field col s12">
       <i class="material-icons prefix">settings</i>
-      <%= f.label :user_type , class: "" %>
-      <%= f.select :user_type, User.user_types.keys, class: "grey-text text-darken-5" %>
+      <%= f.label :user_type%>
+      <%= f.select :user_type, User.user_types.keys, class: "browser-default" %>
     </div>
 
     <div class="input-field col s12">
