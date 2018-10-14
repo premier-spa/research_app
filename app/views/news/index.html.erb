@@ -7,16 +7,13 @@
     <% @news.each do |news| %>
       <div class="col s12">
         <div class="card horizontal hoverable">
-          <div class="card-image col s2">
+          <div class="card-image">
             <!-- テーブルから読み込む予定 -->
-            <img class="responsive-img" src="./../../work.png">
+            <img class="responsive-img" src="./../../news.png">
           </div>
-          <div class="card-stacked col s9">
+          <div class="card-stacked">
             <div class ="card-content">
               <!-- テーブルから読み込む予定 -->
-              <div class="col s2">
-                <img class="responsive-img z-depth-2 circle" src="./../../student-icon.png">
-              </div>
               <div class="col s10">
                 <div class="card-title">
                   <%= news.title %>
@@ -25,10 +22,11 @@
                 <p><%= news.release_date %></p>
                 <p><%= news.category.name %></p>
               </div>
+              <div class="col s2">
+                <img class="responsive-img z-depth-2 circle" src="./../../student-icon.png">
+              </div>
             </div>
-          </div>
-          <div class="card-action center col s1">
-            <div class="card-stacked">
+            <div class="card-action">
               <%= link_to '詳細', lab_news_path(@lab, news) %>
               <%= link_to '編集', edit_lab_news_path(@lab, news) %>
               <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
