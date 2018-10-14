@@ -22,3 +22,10 @@ ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
 CSV.foreach('public/grad_univ.csv') do |row|
   Major.create(:university => row[0], :url => row[1], :division => row[2], :address => row[3], :phone => row[4], :department => row[5], :course => row[6], :profession => row[7])
 end
+
+puts "Insert Prefectures"
+Prefecture.delete_all
+CSV.foreach('public/prefectures.csv') do |row|
+  Prefecture.create(:id => row[0], :name => row[1], :kana => row[2])
+end
+
