@@ -1,3 +1,37 @@
+<!-- デザイン用 -->
+<div class="row">
+  <div class="col s12">
+    <h3>News</h3>
+  </div>
+  <div class="col s12">
+    <% @news.each do |work| %>
+      <div class="col s12">
+        <div class="card horizontal hoverable">
+          <div class="card-image">
+            <img src="">image
+          </div>
+          <div class="card-stacked">
+            <div class ="card-content">
+              <span class="card-title">
+                <%= news.name %>
+              </span>
+              <p><%= news.description %></p>
+            </div>
+          </div>
+          <div class="card-action">
+            <%= link_to 'ニュース詳細へ', lab_news_path(@lab, news) %>
+            <%= link_to 'ニュース編集へ', edit_lab_news_path(@lab, news) %>
+            <%= link_to 'ニュース削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>News</h1>
