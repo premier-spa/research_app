@@ -22,3 +22,19 @@ ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
 CSV.foreach('public/grad_univ.csv') do |row|
   Major.create(:university => row[0], :url => row[1], :division => row[2], :address => row[3], :phone => row[4], :department => row[5], :course => row[6], :profession => row[7])
 end
+
+puts "Insert Prefectures and Cities"
+puts "Delete Prefectures and Cities"
+Prefecture.delete_all
+City.delete_all
+puts "Insert Prefectures"
+CSV.foreach('public/prefectures.csv') do |row|
+  Prefecture.create(:id => row[0], :name => row[1], :kana => row[2])
+end
+
+puts "Insert Cities"
+CSV.foreach('public/cities.csv') do |row|
+  # city が紐づくはずの prefecture を絞る
+  prefecture = Prefecture.find_by(name: row[1])
+  City.create(:id => row[0], :prefecture_id => prefecture.id, :name => row[2], :kana => row[3])
+end
