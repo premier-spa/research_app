@@ -16,12 +16,12 @@ CSV.foreach('public/categories.csv') do |row|
   Category.create(:name => row[0], :description => row[1])
 end
 
-# puts "Insert Majors"
-# Major.delete_all
-# ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
-# CSV.foreach('public/grad_univ.csv') do |row|
-#   Major.create(:university => row[0], :url => row[1], :division => row[2], :address => row[3], :phone => row[4], :department => row[5], :course => row[6], :profession => row[7])
-# end
+puts "Insert Majors"
+Major.delete_all
+ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
+CSV.foreach('public/grad_univ.csv') do |row|
+  Major.create(:university => row[0], :url => row[1], :division => row[2], :address => row[3], :phone => row[4], :department => row[5], :course => row[6], :profession => row[7])
+end
 
 puts "Insert Prefectures and Cities"
 puts "Delete Prefectures and Cities"
