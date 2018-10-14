@@ -31,7 +31,7 @@
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'GoodLab', root_path%></li>
+                                <li><%= link_to 'GoodLab', root_path %></li>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn" %></li>
                                 <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn" %></li>
                                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn" %></li>
