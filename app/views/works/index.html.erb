@@ -7,22 +7,26 @@
     <% @works.each do |work| %>
       <div class="col s12">
         <div class="card horizontal hoverable">
-          <div class="card-image">
+          <div class="card-image col s2">
             <!-- テーブルから読み込む予定 -->
-            <img src="./../../work.png">
+            <img class="responsive-img" src="./../../work.png">
           </div>
-          <div class="card-stacked">
+          <div class="card-stacked col s9">
             <div class ="card-content">
-              <span class="card-title">
-                <%= work.name %>
-              </span>
-              <p><%= work.description %></p>
+              <!-- テーブルから読み込む予定 -->
+              <img class="responsive-img circle col s2" src="./../../student-icon.png">
+              <div class="col s10">
+                <div class="card-title">
+                  <%= work.name %>
+                </div>
+                <p><%= work.description %></p>
+              </div>
             </div>
           </div>
-          <div class="card-action">
+          <div class="card-action center col s1">
             <%= link_to '詳細', lab_work_path(@lab, work) %>
-            <%= link_to '研究内容編集', edit_lab_work_path(@lab, work) %>
-            <%= link_to '研究内容削除', lab_work_path(@lab, work), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '編集', edit_lab_work_path(@lab, work) %>
+            <%= link_to '削除', lab_work_path(@lab, work), method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
         </div>
       </div>
