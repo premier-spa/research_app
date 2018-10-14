@@ -26,7 +26,7 @@
                             <% if current_user.labs[0] %>
                             <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
                                 <%= link_to current_user.labs[0].name, current_user.labs[0] , class: "brand-logo"%>
-                            <% else%>
+                            <% else %>
                                 <a href="#" class="brand-logo">ここに研究室名を表示</a>
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
