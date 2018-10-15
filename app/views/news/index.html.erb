@@ -1,58 +1,111 @@
 <!-- デザイン用 -->
-
-
-
-<div class="row">
+<div class = "row">
+  <div style="height: 40px;">
+  </div>
   <div class="col s12">
     <h3>News</h3>
   </div>
   <div class="col s12">
-    <% @news.each do |news| %>
-      <div class="col s12">
-        <div class="card horizontal hoverable">
-          <div class="card-image">
-            <!-- テーブルから読み込む予定 -->
-            <img class="responsive-img" src="./../../news.png">
-          </div>
-          <div class="card-stacked">
-            <div class ="card-content">
-              <!-- テーブルから読み込む予定 -->
-              <div class="col s10">
-                <div class="card-title">
-                  <%= news.title %>
+    <ul class="tabs amber accent-4 tabs-transparent">
+      <li class="tab"><a class="active grey-text text-darken-2" href="#all">All</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2018">2018</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2017">2017</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2016">2016</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2015">2015</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2014">2014</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2013">2013</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2012">2012</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2011">2011</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2010">2010</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2009">2009</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
+    </ul>
+    <div id="all" class="col s12 white">
+      <div class="section">
+        <div class="col s12">
+          <% @news.each do |news| %>
+            <div class="section">
+              <div class="col s12">
+                <div class="card horizontal z-depth-0";>
+                  <div class="card-image">
+                    <!-- テーブルから読み込む予定 -->
+                    <img class="responsive-img" src="./../../news.png" style="width: 200px; height: auto;">
+                  </div>
+                  <div class="card-stacked">
+                    <div class ="card-content">
+                      <!-- テーブルから読み込む予定 -->
+                      <div class="col s10">
+                        <div class="card-title">
+                          <%= news.title %>
+                        </div>
+                        <p><%= news.description %></p>
+                        <p><%= news.release_date %></p>
+                        <p><%= news.category.name %></p>
+                      </div>
+                      <div class="col s2">
+                        <img class="responsive-img z-depth-1 circle" src="./../../student-icon.png" style="width: 100px; height: auto;">
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <%= link_to '詳細', lab_news_path(@lab, news) %>
+                      <%= link_to '編集', edit_lab_news_path(@lab, news) %>
+                      <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </div>
+                  </div>
                 </div>
-                <p><%= news.description %></p>
-                <p><%= news.release_date %></p>
-                <p><%= news.category.name %></p>
-              </div>
-              <div class="col s2">
-                <img class="responsive-img z-depth-2 circle" src="./../../student-icon.png">
               </div>
             </div>
-            <div class="card-action">
-              <%= link_to '詳細', lab_news_path(@lab, news) %>
-              <%= link_to '編集', edit_lab_news_path(@lab, news) %>
-              <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
-            </div>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
+    <div id="2018" class="white">
+      <ul class="collapsible z-depth-0">
+        <% @news.each do |news| %>
+          <li>
+            <div class="collapsible-header">
+              <!-- テーブルから読み込む予定 -->
+              <i class="material-icons">star</i>
+              <span><%= news.title %>.  
+                <%= news.description %>
+                <%= news.release_date %>
+                <%= news.category.name %>
+              </span>
+            </div>
+            <div class="collapsible-body">
+              <span>
+                <img class="responsive-img circle" src="./../../student-icon.png" style="width: 30px; height: auto;">
+                Here is summary
+              </span>
+              <div class="right">
+                <%= link_to '詳細', lab_news_path(@lab, news) %>
+                <%= link_to '編集', edit_lab_news_path(@lab, news) %>
+                <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="2017" class="col s12 white">2017</div>
+    <div id="2016" class="col s12 white">2016</div>
+    <div id="2015" class="col s12 white">2015</div>
+    <div id="2014" class="col s12 white">2014</div>
+    <div id="2013" class="col s12 white">2013</div>
+    <div id="2012" class="col s12 white">2012</div>
+    <div id="2011" class="col s12 white">2011</div>
+    <div id="2010" class="col s12 white">2010</div>
+    <div id="2009" class="col s12 white">2009</div>
+    <div id="2008" class="col s12 white">2008</div>
   </div>
 </div>
 
-<div id ="swipeable">
-<ul id="tabs-swipe-demo" class="tabs">
-  <li class="tab col s3"><a class="active" href="#swipe-1">Test 1</a></li>
-  <li class="tab col s3"><a href="#swipe-2">Test 2</a></li>
-  <li class="tab col s3"><a href="#swipe-3">Test 3</a></li>
-</ul>
-<div class="tabs-content">
-<div id="swipe-1" class="col s12 blue">Test 1</div>
-<div id="swipe-2" class="col s12 red">Test 2</div>
-<div id="swipe-3" class="col s12 green">Test 3</div>
-</div>
-</div>
+
+
+
+
+
+
 
 
 <p id="notice"><%= notice %></p>

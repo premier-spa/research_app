@@ -4,8 +4,8 @@
         <title>DeviseRails5</title>
         <%= csrf_meta_tags %>
 
-<!--         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>-->
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<!--         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
 
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -46,34 +46,46 @@
                                     <div class="col s1 center"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></div>
-                                </ul>
+                                </div>
                             </div>
                         <% end %>
                     </nav>
                 </div>
-
                 <!-- サイド ナビゲーションバー-->
                 <ul class="sidenav" id="mobile-demo">
-                    <li><%= link_to 'GoodLab', root_path %></li>
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <!-- DBから読み込み予定 -->
+                                <img src="home1.jpg">
+                            </div>
+                            <!-- DBから読み込み予定 -->
+                            <a href="#user"><img class="circle" src="student-icon.png"></a>
+                            <a href="#name"><%= link_to current_user.id, homes_show_path, class: "white-text name" %></a>
+                            <a href="#email" class="white-text email"><%= current_user.email %></a>
+                        </div>
+                    </li>
+                    <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <li><%= link_to current_user.id, homes_show_path %></li>
+                    <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-                    <li><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                    <li><div class="divider"></div></li>
-                    <li><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
+                    <% if current_user.get_prime_lab %>
+                        <li><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
+                    <% end %>
                 </ul>
                 <% else %>
                     <div class="navbar-fixed">
@@ -97,7 +109,6 @@
                 <% end %>
             </div>
         </header>
-
 <!--         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p> -->
 
@@ -139,11 +150,21 @@
             $('.tabs').tabs();
               });
         </script>
-        <!-- For carousel -->
+        <!-- For collapsible -->
         <script>
+            $(document).ready(function(){
+            $('.collapsible').collapsible();
+            });
+        </script>
+        <!-- For carousel -->
+<!--         <script>
             $(document).ready(function(){
             $('.carousel').carousel();
             });
-        </script>
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators: true
+            });
+        </script> -->
     </body>
 </html>
