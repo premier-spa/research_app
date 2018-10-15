@@ -38,14 +38,14 @@
                         <% if current_user.get_prime_lab %>
                             <!-- メニュー -->
                             <div class="nav-content">
-                                <ul class="tabs tabs-transparent">
-                                    <li class="tab"><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
-                                    <li class="tab"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
+                                <div id="nav-mobile" class="row hide-on-med-and-down">
+                                    <div class="col s1 center"><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></div>
                                 </ul>
                             </div>
                         <% end %>
@@ -61,6 +61,19 @@
                     <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                     <li><div class="divider"></div></li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                    <li><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                    <li><div class="divider"></div></li>
+                    <li><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
                 </ul>
                 <% else %>
                     <div class="navbar-fixed">
@@ -120,6 +133,17 @@
             $('.slider').slider();
             });
         </script>
-
+        <!-- For tabs -->
+        <script>
+            $(document).ready(function(){
+            $('.tabs').tabs();
+              });
+        </script>
+        <!-- For carousel -->
+        <script>
+            $(document).ready(function(){
+            $('.carousel').carousel();
+            });
+        </script>
     </body>
 </html>
