@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     resources :news
 		resources :albums
     resources :works
+    member do
+      get 'about'
+      get 'people'
+      get 'contact'
+    end
   end
 
 end
