@@ -21,43 +21,33 @@
       <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
     </ul>
     <div id="all" class="col s12 white">
-      <div class="section">
-        <div class="col s12">
-          <% @news.each do |news| %>
-            <div class="section">
-              <div class="col s12">
-                <div class="card horizontal z-depth-0";>
-                  <div class="card-image">
-                    <!-- テーブルから読み込む予定 -->
-                    <img class="responsive-img" src="./../../news.png" style="width: 200px; height: auto;">
-                  </div>
-                  <div class="card-stacked">
-                    <div class ="card-content">
+      <% @news.each do |news| %>
+        <div class="section">
+            <div class="card horizontal z-depth-0";>
+              <div class="card-image">
+                <!-- テーブルから読み込む予定 -->
+                <img class="responsive-img" src="./../../news.png" style="width: 200px; height: auto; object-fit: cover">
+              </div>
+              <div class="card-stacked">
+                <div class ="card-content">
+                    <div class="card-title">
+                      <%= news.title %>
                       <!-- テーブルから読み込む予定 -->
-                      <div class="col s10">
-                        <div class="card-title">
-                          <%= news.title %>
-                        </div>
-                        <p><%= news.description %></p>
-                        <p><%= news.release_date %></p>
-                        <p><%= news.category.name %></p>
-                      </div>
-                      <div class="col s2">
-                        <img class="responsive-img z-depth-1 circle" src="./../../student-icon.png" style="width: 100px; height: auto;">
-                      </div>
+                      <img class="responsive-img z-depth-1 right circle" src="./../../student-icon.png" style= "width: 64px; height: 64px; object-fit: cover;">
                     </div>
-                    <div class="card-action">
-                      <%= link_to '詳細', lab_news_path(@lab, news) %>
-                      <%= link_to '編集', edit_lab_news_path(@lab, news) %>
-                      <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </div>
-                  </div>
+                    <p><%= news.description %></p>
+                    <p><%= news.release_date %></p>
+                    <p><%= news.category.name %></p>
+                </div>
+                <div class="card-action">
+                  <%= link_to '詳細', lab_news_path(@lab, news) %>
+                  <%= link_to '編集', edit_lab_news_path(@lab, news) %>
+                  <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>
             </div>
-          <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
     <div id="2018" class="white">
       <ul class="collapsible z-depth-0">
