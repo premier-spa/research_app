@@ -13,16 +13,13 @@
           </div>
           <div class="card-stacked">
             <div class ="card-content">
-              <div class="col s10">
-                <div class="card-title">
-                  <%= work.name %>
-                </div>
-                <p><%= work.description %></p>
+              <div class="card-title">
+                <%= work.name %>
+                <% if current_user.image.attached? %>
+                  <%= image_tag current_user.image, class: "responsive-img z-depth-1 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+                <% end %>
               </div>
-              <div class="col s2">
-                <!-- テーブルから読み込む予定 -->
-                <img class="responsive-img z-depth-1 circle" src="./../../student-icon.png" style="width: 100px; height: auto;">
-              </div>
+              <p><%= work.description %></p>
             </div>
             <div class="card-action">
               <%= link_to '詳細', lab_work_path(@lab, work) %>

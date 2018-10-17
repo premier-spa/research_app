@@ -55,12 +55,13 @@
                 <ul class="sidenav" id="mobile-demo">
                     <li>
                         <div class="user-view">
-                            <div class="background">
+                            <div class="background amber accent-4">
                                 <!-- DBから読み込み予定 -->
-                                <img src="home1.jpg">
                             </div>
                             <!-- DBから読み込み予定 -->
-                            <a href="#user"><img class="circle" src="student-icon.png"></a>
+                            <% if current_user.image.attached? %>
+                                <a href="#user"><%= image_tag current_user.image, class: "circle" %></a>
+                            <% end %>
                             <a href="#name"><%= link_to current_user.id, homes_show_path, class: "white-text name" %></a>
                             <a href="#email" class="white-text email"><%= current_user.email %></a>
                         </div>
