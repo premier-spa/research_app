@@ -8,6 +8,9 @@ class WorksController < ApplicationController
   def index
     @works = Work.all
   end
+  # def index
+  #   @works = Work.where(lab_id: params[:lab_id])
+  # end
 
   # GET /works/1
   # GET /works/1.json
