@@ -84,6 +84,8 @@ class LabsController < ApplicationController
 
   # GET /labs/1/contact
   def contact
+    # Google Map のアクセスキーを取得
+    @map_script_path = "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap"
   end
 
   private
