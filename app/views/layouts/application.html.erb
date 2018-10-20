@@ -43,7 +43,7 @@
                                     <div class="col s1 center"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'People', people_lab_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></div>
                                 </div>

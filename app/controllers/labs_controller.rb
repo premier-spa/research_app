@@ -1,5 +1,5 @@
 class LabsController < ApplicationController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :people]
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
   before_action :set_works, only: [:show]
