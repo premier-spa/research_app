@@ -7,6 +7,7 @@
   </div>
   <div class="col s12">
     <div class="card z-depth-1">
+      <h4>Professors</h4>
       <% @lab.users.where(user_type: 1).each do |lab_professor| %>
         <div class="card-content">
           <div class="card horizontal z-depth-0">
@@ -26,6 +27,28 @@
           </div>
         </div>
       <% end %>
+
+      <!-- ダミー -->
+      <% @lab.users.where(user_type: 0).each do |lab_professor| %>
+        <div class="card-content">
+          <div class="card horizontal z-depth-0">
+              <% if lab_professor.image.attached? %>
+                <%= image_tag lab_professor.image, class: "responsive-img circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
+              <% end %>
+            <div class="card-stacked">
+              <div class="card-content">
+                <span>Name : Last First</span>
+                <p>Position : 教授, 准教授 etc.</p>
+                <p>Email : <%= lab_professor.email %></p>
+              </div>
+              <div class="card-action">
+                <a href="#">プロフィールへ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <!-- ダミーここまで -->
     </div>
   </div>
 </div>
@@ -45,6 +68,7 @@
       <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
     </ul>
     <div id="2018" class="col s12 white">
+      <h4>Sturdents</h4>
       <% @lab.users.where(user_type: 0).each do |lab_member| %>
         <div class="card z-depth-0 col s12 m6 l4 ">
           <div class="card-content">
