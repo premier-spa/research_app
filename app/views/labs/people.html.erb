@@ -11,7 +11,7 @@
         <div class="card-content">
           <div class="card horizontal z-depth-0">
               <% if lab_professor.image.attached? %>
-                <%= image_tag lab_professor.image, class: "responsive-img right circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
+                <%= image_tag lab_professor.image, class: "responsive-img circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
               <% end %>
             <div class="card-stacked">
               <div class="card-content">
@@ -45,27 +45,26 @@
       <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
     </ul>
     <div id="2018" class="col s12 white">
-      <ul class="collapsible z-depth-0">
-        <% @lab.users.each do |lab_member| %>
-          <li>
-            <div class="collapsible-header">
-              <!-- テーブルから読み込む予定 -->
-              <i class="material-icons">star</i>
-              <span>
-                <%= lab_member.email %>
-              </span>
-            </div>
-            <div class="collapsible-body">
-              <span>
-                <img class="responsive-img circle" src="./../../student-icon.png" style="width: 30px; height: auto;">
-                Here is summary
-              </span>
-              <div class="right">
+      <% @lab.users.where(user_type: 0).each do |lab_member| %>
+        <div class="card z-depth-0 col s12 m6 l4 ">
+          <div class="card-content">
+            <div class="card horizontal z-depth-0">
+                <% if lab_member.image.attached? %>
+                  <%= image_tag lab_member.image, class: "responsive-img circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
+                <% end %>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <span>Name : Last First (M1)</span>
+                  <p>Email : <%= lab_member.email %></p>
+                </div>
+                <div class="card-action">
+                  <a href="#">プロフィールへ</a>
+                </div>
               </div>
             </div>
-          </li>
-        <% end %>
-      </ul>
+          </div>
+        </div>
+      <% end %>
     </div>
     <div id="2017" class="col s12 white">2017</div>
     <div id="2016" class="col s12 white">2016</div>
