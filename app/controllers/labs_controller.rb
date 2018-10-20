@@ -1,5 +1,5 @@
 class LabsController < ApplicationController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :contact]
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
   before_action :set_works, only: [:show]
@@ -84,6 +84,8 @@ class LabsController < ApplicationController
 
   # GET /labs/1/contact
   def contact
+    # Google Map のアクセスキーを取得
+    @map_script_path = "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap"
   end
 
   private
