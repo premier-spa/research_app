@@ -14,7 +14,8 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(params[:query])
+    @query_string = params[:search]
+    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(@query_string)
   end
 
   # GET /labs/1
