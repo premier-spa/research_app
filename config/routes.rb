@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     resources :news
 		resources :albums
     resources :works
-    member do
-      get 'about'
-      get 'people'
-      get 'contact'
-    end
+    # member do
+    get '/about/:id', to: 'labs#about', as: 'about'
+    get 'people/:id', to: 'labs#people', as: 'people'
+    get 'contact/:id', to: 'labs#contact', as: 'contact'
+    # end
   end
 
 end

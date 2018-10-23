@@ -8,7 +8,7 @@
   <div class="col s12">
     <div class="card z-depth-1">
       <h4>Professors</h4>
-      <% @lab.users.where(user_type: 1).each do |lab_professor| %>
+      <% @lab_professors.each do |lab_professor| %>
         <div class="card-content">
           <div class="card horizontal z-depth-0">
               <% if lab_professor.image.attached? %>
@@ -29,7 +29,7 @@
       <% end %>
 
       <!-- ダミー -->
-      <% @lab.users.where(user_type: 0).each do |lab_professor| %>
+      <% @lab_students.each do |lab_professor| %>
         <div class="card-content">
           <div class="card horizontal z-depth-0">
               <% if lab_professor.image.attached? %>
@@ -69,17 +69,17 @@
     </ul>
     <div id="2018" class="col s12 white">
       <h4>Sturdents</h4>
-      <% @lab.users.where(user_type: 0).each do |lab_member| %>
+      <% @lab_students.each do |lab_student| %>
         <div class="card z-depth-0 col s12 m6 l4 ">
           <div class="card-content">
             <div class="card horizontal z-depth-0">
-                <% if lab_member.image.attached? %>
-                  <%= image_tag lab_member.image, class: "responsive-img circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
+                <% if lab_student.image.attached? %>
+                  <%= image_tag lab_student.image, class: "responsive-img circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
                 <% end %>
               <div class="card-stacked">
                 <div class="card-content">
                   <span>Name : Last First (M1)</span>
-                  <p>Email : <%= lab_member.email %></p>
+                  <p>Email : <%= lab_student.email %></p>
                 </div>
                 <div class="card-action">
                   <a href="#">プロフィールへ</a>
