@@ -21,10 +21,8 @@
                 <div class="navbar-fixed">
                     <nav class="nav-extended white">
                         <div class="nav-wrapper">
-                            <!-- has_labsが修正されるまでの応急処置 -->
-                            <% if current_user.get_prime_lab %>
-                            <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
-                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo grey-text text-darken-2" %>
+                            <% if @lab %>
+                                <%= link_to @lab.name, lab_path(@lab) , class: "brand-logo grey-text text-darken-2" %>
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -35,17 +33,17 @@
                             </ul>
                         </div>
 
-                        <% if current_user.get_prime_lab %>
+                        <% if @lab %>
                             <!-- メニュー -->
                             <div class="nav-content">
                                 <div id="nav-mobile" class="row hide-on-med-and-down">
-                                    <div class="col s1 center"><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'People', root_path, class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Contact us', contact_lab_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'About us', lab_about_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'People', lab_people_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Contact us', lab_contact_path(@lab), class: "grey-text text-darken-2" %></div>
                                 </div>
                             </div>
                         <% end %>
