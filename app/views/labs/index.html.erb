@@ -1,118 +1,66 @@
-<ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><form action="#">
-    <p>
-      <label>
-        <input type="checkbox" />
-        <span>Red</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input type="checkbox" checked="checked" />
-        <span>Yellow</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input type="checkbox" class="filled-in" checked="checked" />
-        <span>Filled in</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input id="indeterminate-checkbox" type="checkbox" />
-        <span>Indeterminate Style</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input type="checkbox" checked="checked" disabled="disabled" />
-        <span>Green</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input type="checkbox" disabled="disabled" />
-        <span>Brown</span>
-      </label>
-    </p>
-  </form></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-
-
 <p id="notice"><%= notice %></p>
 
-<h1>SearchLabs</h1>
+<div class="row">
+  </div>
 
-<%= form_tag("/labs/", method: "get") do %>
-  <%= label_tag(:query, "Search for:") %>
-  <%= text_field_tag(:query) %>
-  <%= submit_tag("Search") %>
-<% end %>
-
-<% unless @labs.nil? %>
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Majar</th>
-      <th>About us</th>
-      <th>Purpose</th>
-      <th>Message</th>
-      <th>Facility</th>
-      <th>Address</th>
-      <th>Tel</th>
-      <th>Fax</th>
-      <th>Email</th>
-      <th>Access</th>
-      <th>Lon</th>
-      <th>Lat</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+  <%= form_tag("/labs/", method: "get", class: "col s12") do %>
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <%= search_field_tag(:search, @query_string, id: "icon_prefix2", class: "materialize-textarea") %>
+        <label for="icon_prefix2">検索</label>
+        <i class="material-icons" id="delete-icon">close</i>
+      </div>
+    </div>
+  <% end %>
+  <div class="col s12">
+    <h3>Search labs</h3>
+  </div>
+  <div class="col s12">
     <% @labs.each do |lab| %>
-      <tr>
-        <% if lab.image.attached? %>
-          <td><%= image_tag lab.image, :size => "30x30" %></td>
-        <% else %>
-          <td></td>
-        <% end %>
-        <td><%= lab.name %></td>
-        <td><%= lab.majar %></td>
-        <td><%= lab.about_us %></td>
-        <td><%= lab.purpose %></td>
-        <td><%= lab.message %></td>
-        <td><%= lab.facility %></td>
-        <td><%= lab.address %></td>
-        <td><%= lab.tel %></td>
-        <td><%= lab.fax %></td>
-        <td><%= lab.email %></td>
-        <td><%= lab.access %></td>
-        <td><%= lab.lon %></td>
-        <td><%= lab.lat %></td>
-        <td><%= link_to '研究室詳細', lab %></td>
-        <% if lab.is_lab_user? current_user %>
-        <td><%= link_to '研究室編集', edit_lab_path(lab) %></td>
-        <td><%= link_to '研究室削除', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+      <div class="col s12">
+        <div class="card horizontal hoverable">
+          <div class="card-image">
+          <% if lab.image.attached? %>
+            <%= image_tag lab.image, class: "responsive-img z-depth-1 right circle", style: "width: 135px; height: 100%; object-fit: cover;" %>
+          <% else %>
+            <!-- no image を設定する予定 -->
+          <% end %>
+          </div>
+          <div class="card-stacked">
+            <div class ="card-content">
+              <div class="card-title">
+                <span class="card-title"><%= link_to lab.name, lab_path(lab) %></span>
+                <p>
+                  <%= lab.majar %><br/>
+                  <% unless lab.works.empty? %>
+                    研究テーマ: <%= lab.work_names %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="card-action">
+              <% if lab.is_lab_user?(current_user) %>
+              <%= link_to '詳細', lab_path(lab) %>
+              <%= link_to '編集', edit_lab_path(lab) %>
+              <%= link_to '削除', lab_path(lab), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
 <%= paginate @labs %>
 
-<% end %>
+<script type="text/javascript">
+  var deleteSearchTextEvent = function () {
+    var inputElement = document.getElementById('icon_prefix2');
+    inputElement.value = "";
+  }
+  document.getElementById('delete-icon').addEventListener('click', deleteSearchTextEvent);
+</script>
+

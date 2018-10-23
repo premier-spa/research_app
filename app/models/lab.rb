@@ -1,5 +1,6 @@
 class Lab < ApplicationRecord
     has_many :news, dependent: :destroy
+    has_many :works, dependent: :destroy
     has_one_attached :image
     has_many :lab_users, dependent: :delete_all
     has_many :users, through: :lab_users
@@ -20,5 +21,11 @@ class Lab < ApplicationRecord
         else
             false
         end
+    end
+
+    # works の name をカンマ区切りで返す
+    def work_names
+        names = self.works.map {|work| work.name }
+        names.join(',')
     end
 end
