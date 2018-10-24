@@ -23,8 +23,22 @@ class Lab < ApplicationRecord
         end
     end
 
+    # labがidを持っているかどうか
+    def present_lab?
+        if self.nil?
+            return false
+        else
+            return true
+        end
+    end
+
+    # labがidを持っているかどうか
     def has_lab_id?
-        return self.id.present?
+        if self.id.nil?
+            return false
+        else
+            return true
+        end
     end
 
     # works の name をカンマ区切りで返す
