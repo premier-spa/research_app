@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_144324) do
+ActiveRecord::Schema.define(version: 2018_10_24_150355) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 2018_10_24_144324) do
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
+  create_table "courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "university_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["university_id"], name: "index_courses_on_university_id"
+  end
+
   create_table "lab_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "lab_id"
@@ -89,9 +97,10 @@ ActiveRecord::Schema.define(version: 2018_10_24_144324) do
   create_table "majors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "profession"
-    t.integer "university_id"
-    t.integer "course_id"
+    t.bigint "university_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_majors_on_course_id"
+    t.index ["university_id"], name: "index_majors_on_university_id"
   end
 
   create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -109,6 +118,12 @@ ActiveRecord::Schema.define(version: 2018_10_24_144324) do
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "kana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -138,8 +153,11 @@ ActiveRecord::Schema.define(version: 2018_10_24_144324) do
 
   add_foreign_key "albums", "labs"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "courses", "universities"
   add_foreign_key "lab_users", "labs"
   add_foreign_key "lab_users", "users"
+  add_foreign_key "majors", "courses"
+  add_foreign_key "majors", "universities"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
   add_foreign_key "works", "labs"
