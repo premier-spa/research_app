@@ -23,6 +23,10 @@ class Lab < ApplicationRecord
         end
     end
 
+    def has_lab_id?
+        return self.id.present?
+    end
+
     # works の name をカンマ区切りで返す
     def work_names
         names = self.works.map {|work| work.name }

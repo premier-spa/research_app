@@ -25,7 +25,7 @@ class LabsController < ApplicationController
 
   # GET /labs/new
   def new
-    @lab = Lab.new(name: "Lab Name")
+    @lab = Lab.new()
   end
 
   # GET /labs/1/edit
