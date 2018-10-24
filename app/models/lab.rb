@@ -16,20 +16,12 @@ class Lab < ApplicationRecord
 
     # user が研究室に入っているか
     def is_lab_user?(user)
-        if self.users.include? user
-            true
-        else
-            false
-        end
+        return self.users.include? user
     end
 
     # labがidを持っているかどうか
     def has_lab_id?
-        if self.id.nil?
-            return false
-        else
-            return true
-        end
+        return !self.id.nil?
     end
 
     # works の name をカンマ区切りで返す
