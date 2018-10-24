@@ -24,15 +24,6 @@ class Lab < ApplicationRecord
     end
 
     # labがidを持っているかどうか
-    def present_lab?
-        if self.nil?
-            return false
-        else
-            return true
-        end
-    end
-
-    # labがidを持っているかどうか
     def has_lab_id?
         if self.id.nil?
             return false
