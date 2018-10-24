@@ -19,9 +19,9 @@ end
 # 大学・大学院、学部・研究科、学科・専攻
 puts "Insert Universities, Courses and Majors"
 puts "Delete Universities, Courses and Majors"
-University.delete_all
-Course.delete_all
 Major.delete_all
+Course.delete_all
+University.delete_all
 puts "Insert Universities"
 CSV.foreach('public/univ_list.csv') do |row|
   University.create(:id => row[0], :name => row[1])
@@ -36,7 +36,7 @@ end
 puts "Insert Majors"
 CSV.foreach('public/univ_course_major_list.csv') do |row|
   university = University.find_by(name: row[1])
-  course = Course.find_by(name: row[2])
+  course = Course.where(university_id: university.id).find_by(name: row[2])
   Major.create(:id => row[0], :university_id => university.id, :course_id => course.id, :name => row[3])
 end
 
@@ -44,8 +44,8 @@ end
 
 puts "Insert Prefectures and Cities"
 puts "Delete Prefectures and Cities"
-Prefecture.delete_all
 City.delete_all
+Prefecture.delete_all
 puts "Insert Prefectures"
 CSV.foreach('public/prefectures.csv') do |row|
   Prefecture.create(:id => row[0], :name => row[1], :kana => row[2])

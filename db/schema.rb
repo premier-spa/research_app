@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_150355) do
     t.datetime "updated_at", null: false
     t.bigint "university_id"
     t.bigint "course_id"
+    t.string "name"
     t.index ["course_id"], name: "index_majors_on_course_id"
     t.index ["university_id"], name: "index_majors_on_university_id"
   end
