@@ -97,11 +97,9 @@ ActiveRecord::Schema.define(version: 2018_10_24_150355) do
   create_table "majors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "university_id"
     t.bigint "course_id"
     t.string "name"
     t.index ["course_id"], name: "index_majors_on_course_id"
-    t.index ["university_id"], name: "index_majors_on_university_id"
   end
 
   create_table "news", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -158,7 +156,6 @@ ActiveRecord::Schema.define(version: 2018_10_24_150355) do
   add_foreign_key "lab_users", "labs"
   add_foreign_key "lab_users", "users"
   add_foreign_key "majors", "courses"
-  add_foreign_key "majors", "universities"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
   add_foreign_key "works", "labs"
