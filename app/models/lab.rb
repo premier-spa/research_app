@@ -19,11 +19,6 @@ class Lab < ApplicationRecord
         return self.users.include? user
     end
 
-    # labがidを持っているかどうか
-    def has_lab_id?
-        return !self.id.nil?
-    end
-
     # works の name をカンマ区切りで返す
     def work_names
         names = self.works.map {|work| work.name }

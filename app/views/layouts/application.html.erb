@@ -21,16 +21,14 @@
                 <div class="navbar-fixed">
                     <nav class="nav-extended white">
                         <div class="nav-wrapper">
-                            <% unless @lab.nil? %>
-                                <% if @lab.has_lab_id? %>
-                                    <%= link_to @lab.name, lab_path(@lab) , class: "brand-logo grey-text text-darken-2" %>
-                                <% end %>
+                            <% unless @lab.nil? || @lab.new_record? %>
+                                <%= link_to @lab.name, lab_path(@lab) , class: "brand-logo grey-text text-darken-2" %>
                             <% else %>
                                 <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <% unless @lab.nil? %>
+                                <% unless @lab.nil? || @lab.new_record? %>
                                     <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
                                 <% end %>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
@@ -39,21 +37,19 @@
                             </ul>
                         </div>
 
-                        <% unless @lab.nil? %>
-                            <% if @lab.has_lab_id? %>
-                                <!-- メニュー -->
-                                <div class="nav-content">
-                                    <div id="nav-mobile" class="row hide-on-med-and-down">
-                                        <div class="col s1 center"><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
-                                        <div class="col s1 center"><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    </div>
+                        <% unless @lab.nil? || @lab.new_record? %>
+                            <!-- メニュー -->
+                            <div class="nav-content">
+                                <div id="nav-mobile" class="row hide-on-med-and-down">
+                                    <div class="col s1 center"><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
                                 </div>
-                            <% end %>
+                            </div>
                         <% end %>
                     </nav>
                 </div>
@@ -78,22 +74,20 @@
                     <li><div class="divider"></div></li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <% unless @lab.nil? %>
-                        <% if @lab.has_lab_id? %>
-                            <li><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></li>
-                            <li><div class="divider"></div></li>
-                            <li><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></li>
-                        <% end %>
+                    <% unless @lab.nil? || @lab.new_record? %>
+                        <li><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><div class="divider"></div></li>
+                        <li><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                     <% end %>
                 </ul>
             <% else %>
