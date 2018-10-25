@@ -27,6 +27,31 @@
           </div>
         </div>
       <% end %>
+<<<<<<< HEAD
+=======
+
+      <!-- ダミー -->
+      <% @lab_students.each do |lab_professor| %>
+        <div class="card-content">
+          <div class="card horizontal z-depth-0">
+              <% if lab_professor.image.attached? %>
+                <%= image_tag lab_professor.image, class: "responsive-img circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
+              <% end %>
+            <div class="card-stacked">
+              <div class="card-content">
+                <span>Name : Last First</span>
+                <p>Position : 教授, 准教授 etc.</p>
+                <p>Email : <%= lab_professor.email %></p>
+              </div>
+              <div class="card-action">
+                <a href="#">プロフィールへ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <!-- ダミーここまで -->
+>>>>>>> f34f998... ルーティング修正待ち
     </div>
   </div>
 </div>
