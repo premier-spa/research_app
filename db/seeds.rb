@@ -37,7 +37,7 @@ puts "Insert Majors"
 CSV.foreach('public/univ_course_major_list.csv') do |row|
   university = University.find_by(name: row[1])
   course = Course.where(university_id: university.id).find_by(name: row[2])
-  Major.create(:id => row[0], :university_id => university.id, :course_id => course.id, :name => row[3])
+  Major.create(:id => row[0], :course_id => course.id, :name => row[3])
 end
 
 
