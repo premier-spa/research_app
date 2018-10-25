@@ -22,22 +22,25 @@ puts "Delete Universities, Courses and Majors"
 Major.delete_all
 Course.delete_all
 University.delete_all
+ActiveRecord::Base.connection.execute('ALTER TABLE universities AUTO_INCREMENT = 1')
+ActiveRecord::Base.connection.execute('ALTER TABLE courses AUTO_INCREMENT = 1')
+ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
 puts "Insert Universities"
 CSV.foreach('public/univ_list.csv') do |row|
-  University.create(:id => row[0], :name => row[1])
+  University.create(:name => row[1])
 end
 
 puts "Insert Courses"
 CSV.foreach('public/univ_course_list.csv') do |row|
   university = University.find_by(name: row[1])
-  Course.create(:id => row[0], :university_id => university.id, :name => row[2])
+  Course.create(:university_id => university.id, :name => row[2])
 end
 
 puts "Insert Majors"
 CSV.foreach('public/univ_course_major_list.csv') do |row|
   university = University.find_by(name: row[1])
   course = Course.where(university_id: university.id).find_by(name: row[2])
-  Major.create(:id => row[0], :course_id => course.id, :name => row[3])
+  Major.create(:course_id => course.id, :name => row[3])
 end
 
 
