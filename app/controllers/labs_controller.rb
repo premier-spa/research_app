@@ -1,5 +1,5 @@
 class LabsController < ApplicationController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy, :people, :contact]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :people , :about, :contact]
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
   before_action :set_works, only: [:show]
@@ -14,7 +14,8 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(params[:query])
+    @query_string = params[:search]
+    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(@query_string)
   end
 
   # GET /labs/1
@@ -86,6 +87,8 @@ class LabsController < ApplicationController
 
   # GET /labs/1/contact
   def contact
+    # Google Map のアクセスキーを取得
+    @map_script_path = "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_KEY']}&callback=initMap"
   end
 
   private

@@ -21,31 +21,33 @@
                 <div class="navbar-fixed">
                     <nav class="nav-extended white">
                         <div class="nav-wrapper">
-                            <!-- has_labsが修正されるまでの応急処置 -->
-                            <% if current_user.get_prime_lab %>
-                            <!-- 複数の研究室に所属する場合、最初に登録した研究室をHomeとしてます -->
-                                <%= link_to current_user.get_prime_lab.name, current_user.get_prime_lab , class: "brand-logo grey-text text-darken-2" %>
+                            <% unless @lab.nil? || @lab.new_record? %>
+                                <%= link_to @lab.name, lab_path(@lab) , class: "brand-logo grey-text text-darken-2" %>
+                            <% else %>
+                                <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
                             <% end %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
+                                <% unless @lab.nil? || @lab.new_record? %>
+                                    <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
+                                <% end %>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
 
-                        <% if current_user.get_prime_lab %>
+                        <% unless @lab.nil? || @lab.new_record? %>
                             <!-- メニュー -->
                             <div class="nav-content">
                                 <div id="nav-mobile" class="row hide-on-med-and-down">
-                                    <div class="col s1 center"><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'People', people_lab_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
                                 </div>
                             </div>
                         <% end %>
@@ -72,42 +74,42 @@
                     <li><div class="divider"></div></li>
                     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <% if current_user.get_prime_lab %>
-                        <li><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
+                    <% unless @lab.nil? || @lab.new_record? %>
+                        <li><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'About us', root_path, class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Research', lab_works_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Publications', lab_news_index_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'People', people_lab_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'People', people_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Photos', lab_albums_path(current_user.get_prime_lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Contact us', root_path, class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                     <% end %>
                 </ul>
-                <% else %>
-                    <div class="navbar-fixed">
-                        <nav class="white">
-                            <div class="nav-wrapper">
-                                <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
-                                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
-                                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                    <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
-                                    <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
+            <% else %>
+                <div class="navbar-fixed">
+                    <nav class="white">
+                        <div class="nav-wrapper">
+                            <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
 
-                    <!-- サイド ナビゲーションバー-->
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-                        <li><%= link_to 'ログイン', new_user_session_path %></li>
-                    </ul>
-                <% end %>
+                <!-- サイド ナビゲーションバー-->
+                <ul class="sidenav" id="mobile-demo">
+                    <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                    <li><%= link_to 'ログイン', new_user_session_path %></li>
+                </ul>
+            <% end %>
             </div>
         </header>
 <!--         <p class="notice"><%= notice %></p>
@@ -157,15 +159,5 @@
             $('.collapsible').collapsible();
             });
         </script>
-        <!-- For carousel -->
-<!--         <script>
-            $(document).ready(function(){
-            $('.carousel').carousel();
-            });
-            $('.carousel.carousel-slider').carousel({
-                fullWidth: true,
-                indicators: true
-            });
-        </script> -->
     </body>
 </html>
