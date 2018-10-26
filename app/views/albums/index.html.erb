@@ -21,40 +21,27 @@
       <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
     </ul>
     <div id="all" class="white">
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <i class="material-icons circle">photo</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle blue">folder</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle green">insert_chart</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">play_arrow</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-      </ul>
+      <div class="row">
+        <% @albums.each do |album| %>
+          <div class="col s12 m6 l4">
+            <div class="card">
+              <div class="card-image">
+                <% if album.images.attached? %>
+                  <%= image_tag album.images.first %>
+                <% end %>
+                <span class="card-title"><%= album.name %></span>
+              </div>
+              <div class="card-action">
+                <%= album.created_at %>
+                <%= album.updated_at %>
+                <%= link_to 'アルバム詳細へ', lab_album_path(@lab, album) %>
+                <%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, album) %>
+                <%= button_to 'アルバム削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div id="2018" class="col s12 white">2018</div>
     <div id="2017" class="col s12 white">2017</div>
@@ -69,41 +56,5 @@
     <div id="2008" class="col s12 white">2008</div>
   </div>
 </div>
-
-
-
-<h1>album</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>image</th>
-      <th>created date</th>
-      <th>updated date</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.name %></td>
-        <td>
-          <% if album.images.attached? %>
-            <%= image_tag album.images.first, :size=> "50x50" %>
-          <% end %>
-        </td>
-        <td><%= album.created_at %></td>
-        <td><%= album.updated_at %></td>
-        <td><%= link_to 'アルバム詳細へ', lab_album_path(@lab, album) %></td>
-        <td><%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, album) %></td>
-        <td><%= link_to 'アルバム削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'アルバム作成', new_lab_album_path %>

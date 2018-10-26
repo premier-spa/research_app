@@ -1,15 +1,37 @@
+<h4>Album</h4>
+
 <%= form_with model: [@lab, @album], local: true  do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %><br><br>
-  <p>画像</p>
-  <%= form.file_field :images, multiple: true %><br>
-  <%= form.hidden_field :lab_id, value: @lab.id %>
+  <div class="input-field col s12">
+    <i class="material-icons prefix">edit</i>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="input-field col s12">
+    <p><i class="material-icons prefix">tag_faces</i>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+    <%= form.hidden_field :lab_id, value: @lab.id %>
+  </div>
+
   <% if @album.images.attached? %>
+  <div class="row">
     <p>現在登録されている画像（削除するものはチェックしてください）</p>
     <% @album.images.each do |image| %>
+    <div class="col s4 m3 l2">
+      <%= image_tag image, class: "responsive-img z-depth-1" %>
+      <label>
       <%= form.check_box :image_ids, {:multiple => true}, image.id, false %>
-      <%= image_tag image, :size=>"100x100" %> <br>
+      <span></span>
+      </label>
+    </div>
     <% end %>
+  </div>
   <% end %>
-  <%= form.submit %>
+
+  <div class="row">
+    <div class="actions col s12">
+      <%= form.submit "Create Album" , class: "btn grey-text text-darken-2 white" %>
+    </div>
+  </div>
 <% end %>
