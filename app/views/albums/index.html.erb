@@ -46,8 +46,6 @@
                   <span class="card-title"><%= album.name %></span>
                 </div>
                 <div class="card-action">
-                  <%= album.created_at %>
-                  <%= album.updated_at %>
                   <%= link_to '詳細', lab_album_path(@lab, album) %>
                   <%= link_to '編集', edit_lab_album_path(@lab, album) %>
                   <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
