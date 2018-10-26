@@ -16,17 +16,39 @@ CSV.foreach('public/categories.csv') do |row|
   Category.create(:name => row[0], :description => row[1])
 end
 
-puts "Insert Majors"
+# 大学・大学院、学部・研究科、学科・専攻
+puts "Insert Universities, Courses and Majors"
+puts "Delete Universities, Courses and Majors"
 Major.delete_all
+Course.delete_all
+University.delete_all
+ActiveRecord::Base.connection.execute('ALTER TABLE universities AUTO_INCREMENT = 1')
+ActiveRecord::Base.connection.execute('ALTER TABLE courses AUTO_INCREMENT = 1')
 ActiveRecord::Base.connection.execute('ALTER TABLE majors AUTO_INCREMENT = 1')
-CSV.foreach('public/grad_univ.csv') do |row|
-  Major.create(:university => row[0], :url => row[1], :division => row[2], :address => row[3], :phone => row[4], :department => row[5], :course => row[6], :profession => row[7])
+puts "Insert Universities"
+CSV.foreach('public/univ_list.csv') do |row|
+  University.create(:name => row[1])
 end
+
+puts "Insert Courses"
+CSV.foreach('public/univ_course_list.csv') do |row|
+  university = University.find_by(name: row[1])
+  Course.create(:university_id => university.id, :name => row[2])
+end
+
+puts "Insert Majors"
+CSV.foreach('public/univ_course_major_list.csv') do |row|
+  university = University.find_by(name: row[1])
+  course = Course.where(university_id: university.id).find_by(name: row[2])
+  Major.create(:course_id => course.id, :name => row[3])
+end
+
+
 
 puts "Insert Prefectures and Cities"
 puts "Delete Prefectures and Cities"
-Prefecture.delete_all
 City.delete_all
+Prefecture.delete_all
 puts "Insert Prefectures"
 CSV.foreach('public/prefectures.csv') do |row|
   Prefecture.create(:id => row[0], :name => row[1], :kana => row[2])
