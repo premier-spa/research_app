@@ -31,7 +31,7 @@
                                 <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
-                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
 
@@ -70,7 +70,7 @@
                     <li><div class="divider"></div></li>
                     <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
+                    <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
                     <% if current_user.get_prime_lab %>
                         <li><%= link_to 'Home', current_user.get_prime_lab, class: "grey-text text-darken-2" %></li>
