@@ -9,6 +9,6 @@ class Album < ApplicationRecord
     order(:created_at).first.created_at.strftime('%Y')
   end
 
-  def get_album_period(period)
+  def self.get_album_period
   end
 end

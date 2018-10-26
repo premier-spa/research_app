@@ -9,7 +9,7 @@
     <ul class="tabs amber accent-4 tabs-transparent">
       <li class="tab"><a class="active grey-text text-darken-2" href="#all">All</a></li>
       <% (@albums.get_first_year..@albums.get_last_year).reverse_each do  |year| %>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2018"><%= year %></a></li>
+        <li class="tab"><%= link_to year, "#"+year, class: "grey-text text-darken-2" %></li>
       <% end %>
     </ul>
     <div id="all" class="white">
@@ -35,7 +35,31 @@
         <% end %>
       </div>
     </div>
-    <div id="2018" class="col s12 white">2018</div>
+    <% (@albums.get_first_year..@albums.get_last_year).reverse_each do  |year| %>
+      <%= content_tag(:div, id: year, class: "white") do %>
+        <div class="row">
+          <% @albums.where(created_at: Time.new(year)..Time.new(year.to_i+1)).each do |album| %>
+            <div class="col s12 m6 l4">
+              <div class="card">
+                <div class="card-image">
+                  <% if album.images.attached? %>
+                    <%= image_tag album.images.first %>
+                  <% end %>
+                  <span class="card-title"><%= album.name %></span>
+                </div>
+                <div class="card-action">
+                  <%= album.created_at %>
+                  <%= album.updated_at %>
+                  <%= link_to 'アルバム詳細へ', lab_album_path(@lab, album) %>
+                  <%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, album) %>
+                  <%= button_to 'アルバム削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
