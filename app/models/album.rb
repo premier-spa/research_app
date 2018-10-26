@@ -5,6 +5,7 @@ class Album < ApplicationRecord
   def self.get_album_period
     self.get_first_year..self.get_last_year
   end
+
   # 指定年のアルバムを取得
   def self.get_album_during_year(start_year)
     self.where(created_at: Time.new(start_year)..Time.new(start_year.to_i+1))
