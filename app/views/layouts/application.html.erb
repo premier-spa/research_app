@@ -33,7 +33,7 @@
                                 <% end %>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
-                                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
 
@@ -72,7 +72,7 @@
                     <li><div class="divider"></div></li>
                     <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
+                    <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
                     <% unless @lab.nil? || @lab.new_record? %>
                         <li><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></li>
