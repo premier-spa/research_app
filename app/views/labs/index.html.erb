@@ -44,7 +44,7 @@
               <% if lab.is_lab_user?(current_user) %>
               <%= link_to '詳細', lab_path(lab) %>
               <%= link_to '編集', edit_lab_path(lab) %>
-              <%= link_to '削除', lab_path(lab), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= button_to '削除', lab_path(lab), method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             </div>
           </div>
