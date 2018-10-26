@@ -1,1 +1,84 @@
+<!-- デザイン用 -->
+<div class = "row">
+  <div style="height: 40px;">
+  </div>
+  <div class="col s12">
+    <h3>People</h3>
+  </div>
+  <div class="col s12">
+    <div class="card z-depth-1">
+      <h4>Professors</h4>
+      <% @lab_professors.each do |lab_professor| %>
+        <div class="card-content">
+          <div class="card horizontal z-depth-0">
+              <% if lab_professor.image.attached? %>
+                <%= image_tag lab_professor.image, class: "responsive-img circle", style: "width: 150px; height: 150px; object-fit: cover;" %>
+              <% end %>
+            <div class="card-stacked">
+              <div class="card-content">
+                <span>Name : Last First</span>
+                <p>Position : 教授, 准教授 etc.</p>
+                <p>Email : <%= lab_professor.email %></p>
+              </div>
+              <div class="card-action">
+                <a href="#">プロフィールへ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class = "row">
+  <div class="col s12">
+    <ul class="tabs amber accent-4 tabs-transparent">
+      <li class="tab"><a class="active grey-text text-darken-2" href="#2018">2018</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2017">2017</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2016">2016</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2015">2015</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2014">2014</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2013">2013</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2012">2012</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2011">2011</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2010">2010</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2009">2009</a></li>
+      <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
+    </ul>
+    <div id="2018" class="col s12 white">
+      <h4>Sturdents</h4>
+      <% @lab_students.each do |lab_student| %>
+        <div class="card z-depth-0 col s12 m6 l4 ">
+          <div class="card-content">
+            <div class="card horizontal z-depth-0">
+                <% if lab_student.image.attached? %>
+                  <%= image_tag lab_student.image, class: "responsive-img circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
+                <% end %>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <span>Name : Last First (M1)</span>
+                  <p>Email : <%= lab_student.email %></p>
+                </div>
+                <div class="card-action">
+                  <a href="#">プロフィールへ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="2017" class="col s12 white">2017</div>
+    <div id="2016" class="col s12 white">2016</div>
+    <div id="2015" class="col s12 white">2015</div>
+    <div id="2014" class="col s12 white">2014</div>
+    <div id="2013" class="col s12 white">2013</div>
+    <div id="2012" class="col s12 white">2012</div>
+    <div id="2011" class="col s12 white">2011</div>
+    <div id="2010" class="col s12 white">2010</div>
+    <div id="2009" class="col s12 white">2009</div>
+    <div id="2008" class="col s12 white">2008</div>
+  </div>
+</div>
+
 <h1>メンバー一覧</h1>

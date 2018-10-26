@@ -81,6 +81,8 @@ class LabsController < ApplicationController
 
   # GET /labs/1/people
   def people
+    @lab_professors = @lab.users.where(user_type: 1)
+    @lab_students = @lab.users.where(user_type: 0)
   end
 
   # GET /labs/1/contact
