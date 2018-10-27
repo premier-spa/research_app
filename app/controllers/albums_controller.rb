@@ -6,7 +6,7 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.where(lab_id: params[:lab_id])
+    @albums = Album.all
   end
 
   # GET /albums/1
