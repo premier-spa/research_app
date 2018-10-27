@@ -17,20 +17,20 @@ class Album < ApplicationRecord
 
   private
     def self.get_last_year
-      last_year = self.order(:created_at).last.created_at
+      last_year = self.order(:created_at).last
       if last_year.nil?
         Time.now.strftime('%Y')
       else
-        last_year.strftime('%Y')
+        last_year.created_at.strftime('%Y')
       end
     end
 
     def self.get_first_year
-      first_year = self.order(:created_at).first.created_at
+      first_year = self.order(:created_at).first
       if first_year.nil?
         Time.now.strftime('%Y')
       else
-        first_year.strftime('%Y')
+        first_year.created_at.strftime('%Y')
       end
     end
 end
