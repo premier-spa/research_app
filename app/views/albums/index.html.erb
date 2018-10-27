@@ -6,104 +6,58 @@
     <h3>Photos</h3>
   </div>
   <div class="col s12">
+    <% period = @albums.get_lab_albums(params[:lab_id]).get_album_period %>
     <ul class="tabs amber accent-4 tabs-transparent">
       <li class="tab"><a class="active grey-text text-darken-2" href="#all">All</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2018">2018</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2017">2017</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2016">2016</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2015">2015</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2014">2014</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2013">2013</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2012">2012</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2011">2011</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2010">2010</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2009">2009</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#2008">2008</a></li>
+      <% period.reverse_each do  |year| %>
+        <li class="tab"><%= link_to year, "#"+year, class: "grey-text text-darken-2" %></li>
+      <% end %>
     </ul>
     <div id="all" class="white">
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <i class="material-icons circle">photo</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle blue">folder</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle green">insert_chart</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">play_arrow</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-             Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">add_a_photo</i></a>
-        </li>
-      </ul>
+      <div class="row">
+        <% @albums.get_lab_albums(params[:lab_id]).each do |album| %>
+          <div class="col s12 m6 l4">
+            <div class="card">
+              <div class="card-image">
+                <% if album.images.attached? %>
+                  <%= image_tag album.images.first %>
+                <% end %>
+                <span class="card-title"><%= album.name %></span>
+              </div>
+              <div class="card-action">
+                <%= link_to '詳細', lab_album_path(@lab, album) %>
+                <%= link_to '編集', edit_lab_album_path(@lab, album) %>
+                <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div id="2018" class="col s12 white">2018</div>
-    <div id="2017" class="col s12 white">2017</div>
-    <div id="2016" class="col s12 white">2016</div>
-    <div id="2015" class="col s12 white">2015</div>
-    <div id="2014" class="col s12 white">2014</div>
-    <div id="2013" class="col s12 white">2013</div>
-    <div id="2012" class="col s12 white">2012</div>
-    <div id="2011" class="col s12 white">2011</div>
-    <div id="2010" class="col s12 white">2010</div>
-    <div id="2009" class="col s12 white">2009</div>
-    <div id="2008" class="col s12 white">2008</div>
+    <% period.reverse_each do  |year| %>
+      <%= content_tag(:div, id: year, class: "white") do %>
+        <div class="row">
+          <% @albums.get_lab_albums(params[:lab_id], year).each do |album| %>
+            <div class="col s12 m6 l4">
+              <div class="card">
+                <div class="card-image">
+                  <% if album.images.attached? %>
+                    <%= image_tag album.images.first %>
+                  <% end %>
+                  <span class="card-title"><%= album.name %></span>
+                </div>
+                <div class="card-action">
+                  <%= link_to '詳細', lab_album_path(@lab, album) %>
+                  <%= link_to '編集', edit_lab_album_path(@lab, album) %>
+                  <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
-
-
-<h1>album</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>image</th>
-      <th>created date</th>
-      <th>updated date</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.name %></td>
-        <td>
-          <% if album.images.attached? %>
-            <%= image_tag album.images.first, :size=> "50x50" %>
-          <% end %>
-        </td>
-        <td><%= album.created_at %></td>
-        <td><%= album.updated_at %></td>
-        <td><%= link_to 'アルバム詳細へ', lab_album_path(@lab, album) %></td>
-        <td><%= link_to 'アルバム編集へ', edit_lab_album_path(@lab, album) %></td>
-        <td><%= link_to 'アルバム削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'アルバム作成', new_lab_album_path %>
+<%= link_to 'アルバム作成', new_lab_album_path, class: "btn white grey-text text-darken-2" %>

@@ -71,7 +71,7 @@ class AlbumsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_album
-      @album = Album.find(params[:id])
+      @album = Album.where(lab_id: params[:lab_id]).find(params[:id])
     end
 
     # lab を取得
