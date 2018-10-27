@@ -6,9 +6,10 @@
     <h3>Photos</h3>
   </div>
   <div class="col s12">
+    <% period = @albums.get_lab_albums(params[:lab_id]).get_album_period %>
     <ul class="tabs amber accent-4 tabs-transparent">
       <li class="tab"><a class="active grey-text text-darken-2" href="#all">All</a></li>
-      <% @albums.get_lab_albums(params[:lab_id]).get_album_period.reverse_each do  |year| %>
+      <% period.reverse_each do  |year| %>
         <li class="tab"><%= link_to year, "#"+year, class: "grey-text text-darken-2" %></li>
       <% end %>
     </ul>
@@ -33,7 +34,7 @@
         <% end %>
       </div>
     </div>
-    <% @albums.get_lab_albums(params[:lab_id]).get_album_period.reverse_each do  |year| %>
+    <% period.reverse_each do  |year| %>
       <%= content_tag(:div, id: year, class: "white") do %>
         <div class="row">
           <% @albums.get_lab_albums(params[:lab_id], year).each do |album| %>
