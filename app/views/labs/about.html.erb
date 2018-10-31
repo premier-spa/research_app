@@ -1,1 +1,45 @@
-<h1>aboutだよー</h1>
+<!-- デザイン用 -->
+<div class="row">
+  <div class="col s12">
+    <h3>About us</h3>
+  </div>
+  <div class="col s12">
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <!-- テーブルから読み込む予定 -->
+        <img class="responsive-img" src="./../../work.png" style="width: 200px; height: auto; object-fit: cover">
+      </div>
+
+      <div class="card-stacked">
+        <div class ="card-content">
+          <div class="card-title">
+            <h5>教授からのメッセージ</h5>
+          </div>
+          <% if current_user.image.attached? %>
+            <%= image_tag current_user.image, class: "responsive-img z-depth-1 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+          <% end %>
+        </div>
+        <p><%= @lab.about_us %></p>
+      </div>
+    </div>
+
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <!-- テーブルから読み込む予定 -->
+        <img class="responsive-img" src="./../../work.png" style="width: 200px; height: auto; object-fit: cover">
+      </div>
+      <div class="card-stacked">
+        <div class ="card-content">
+          <div class="card-title">
+            <h5>研究室の狙い（Vision)</h5>
+          </div>
+          <% if current_user.image.attached? %>
+            <%= image_tag current_user.image, class: "responsive-img z-depth-1 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+          <% end %>
+        </div>
+        <p><%= @lab.about_us %></p>
+      </div>
+    </div>  
+  </div>
+  
+</div>
