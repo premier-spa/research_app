@@ -1,18 +1,19 @@
 <div class="card horizontal hoverable">
   <div class="card-image">
     <!-- テーブルから読み込む予定 -->
+    <!-- imagefileにカード内写真の場所を入力-->
     <img class="responsive-img" src= <%= imagefile %> style="width: 200px; height: auto; object-fit: cover">
   </div>
 
   <div class="card-stacked">
     <div class ="card-content">
       <div class="card-title">
-        <h5> <%= title %> </h5>
+        <h4> <%= title %> </h4>
       </div>
       <% if current_user.image.attached? %>
         <%= image_tag current_user.image, class: "responsive-img z-depth-1 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
       <% end %>
     </div>
-    <p><%= @lab.about_us %></p>
+    <h5><%= @lab.about_us %></h5>
   </div>
 </div>
