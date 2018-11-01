@@ -37,6 +37,13 @@ gem 'devise'
 gem 'kaminari', '~> 0.17.0'
 gem 'dotenv-rails'
 
+# elastic-search
+# gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+# gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: "5.x"
+gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: "5.x"
+
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
