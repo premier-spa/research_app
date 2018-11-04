@@ -42,6 +42,7 @@ gem 'dotenv-rails'
 # gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: "6.x"
 gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: "6.x"
+gem 'elasticsearch-dsl', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git', branch: "6.x"
 
 
 # Reduces boot times through caching; required in config/boot.rb

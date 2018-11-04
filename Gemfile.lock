@@ -1,4 +1,19 @@
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-ruby.git
+  revision: 55d09903db62ac70f313ec676113ff0fbcf1aa4f
+  branch: 6.x
+  specs:
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
+      multi_json
+    elasticsearch-dsl (0.1.5)
+    elasticsearch-transport (6.1.0)
+      faraday
+      multi_json
+
+GIT
   remote: https://github.com/elasticsearch/elasticsearch-rails.git
   revision: 0ba3efc9840ec7cee1720ca69b0b30810c6d30fa
   branch: 6.x
@@ -95,14 +110,6 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
-    elasticsearch (6.1.0)
-      elasticsearch-api (= 6.1.0)
-      elasticsearch-transport (= 6.1.0)
-    elasticsearch-api (6.1.0)
-      multi_json
-    elasticsearch-transport (6.1.0)
-      faraday
-      multi_json
     erubi (1.7.1)
     execjs (2.7.0)
     faraday (0.15.3)
@@ -242,6 +249,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  elasticsearch-dsl!
   elasticsearch-model!
   elasticsearch-rails!
   jbuilder (~> 2.5)
