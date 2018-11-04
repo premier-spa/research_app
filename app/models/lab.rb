@@ -31,11 +31,10 @@ class Lab < ApplicationRecord
             indexes :purpose, analyzer: 'kuromoji', type: 'text'
             indexes :message, analyzer: 'kuromoji', type: 'text'
             indexes :facility, analyzer: 'kuromoji', type: 'text'
-            indexes :works, type: 'nested', include_in_root: true do
-                indexes :name, analyzer: 'kuromoji', type: 'text'
+            indexes :works do
+                indexes :name, type: 'text'
                 indexes :description, analyzer: 'kuromoji', type: 'text'
             end
-            indexes :image, type: 'nested', include_in_root: true
         end
     end
 
@@ -43,8 +42,26 @@ class Lab < ApplicationRecord
     def as_indexed_json(options = {})
         as_json(
             only: [:name, :about_us, :purpose, :message, :facility],
-            includes: {
+            include: {
                 works: { only: [:name, :description] },
             })
     end
+
+    def self.search(keyword)
+        search_definition = Elasticsearch::DSL::Search.search {
+          query {
+            if keyword.present?
+              multi_match {
+                query keyword
+                fields %w{ name about_us purpose message facility works.name works.description }
+              }
+            else
+              match_all
+            end
+          }
+        }
+        # 検索クエリをなげて結果を表示
+        __elasticsearch__.search(search_definition)
+      end
+
 end
