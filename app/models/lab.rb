@@ -1,4 +1,10 @@
+require 'elasticsearch/model'
+
 class Lab < ApplicationRecord
+    # elasticsearch
+    include Elasticsearch::Model
+
+    # associations
     has_many :news, dependent: :destroy
     has_many :works, dependent: :destroy
     has_one_attached :image
@@ -6,13 +12,13 @@ class Lab < ApplicationRecord
     has_many :users, through: :lab_users
 
     # 検索ページ用のクラスメソッド
-    def self.search(search)
-        if search
-          where(['name LIKE ?', "%#{search}%"])
-        else
-          all
-        end
-    end
+    # def self.search(search)
+    #     if search
+    #       where(['name LIKE ?', "%#{search}%"])
+    #     else
+    #       all
+    #     end
+    # end
 
     # user が研究室に入っているか
     def is_lab_user?(user)
