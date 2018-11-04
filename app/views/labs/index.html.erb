@@ -22,18 +22,21 @@
       <div class="col s12">
         <div class="card horizontal hoverable">
           <div class="card-image">
-          <%# <% if lab.image.attached? 
-            <%= image_tag lab.image, class: "responsive-img z-depth-1 right circle", style: "width: 135px; height: 100%; object-fit: cover;" 
-          <% else
+          <% if lab.image.attached? %>
+            <%= image_tag lab.image, class: "responsive-img z-depth-1 right circle", style: "width: 135px; height: 100%; object-fit: cover;" %>
+          <% else %>
             <!-- no image を設定する予定 -->
           <% end %>
           </div>
           <div class="card-stacked">
             <div class ="card-content">
               <div class="card-title">
-                <span class="card-title"><%= link_to lab.name, "/labs/#{lab.id}
-                " %></span>
+                <span class="card-title"><%= link_to lab.name, lab_path(lab) %></span>
                 <p>
+                  <%= lab.majar %><br/>
+                  <% unless lab.works.empty? %>
+                    研究テーマ: <%= lab.work_names %>
+                  <% end %>
                 </p>
               </div>
             </div>
@@ -60,4 +63,3 @@
   }
   document.getElementById('delete-icon').addEventListener('click', deleteSearchTextEvent);
 </script>
-

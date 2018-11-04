@@ -14,8 +14,14 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
+    # 検索用語を取り出す
     @query_string = params[:search]
-    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).search(@query_string)
+    # Lab の検索結果(ES より返ってくる object の形式)
+    lab_result = Lab.search(@query_string)
+    # lab_id を取り出す
+    lab_ids = lab_result.map {|obj| obj.id }
+    # lab_id をもとに Lab モデルのオブジェクトを設定
+    @labs = Lab.page(params[:page]).per(PER_PAGE_LABS_NUM).where(id: lab_ids)
   end
 
   # GET /labs/1
