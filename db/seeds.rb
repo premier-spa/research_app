@@ -66,6 +66,7 @@ end
 puts "Delete Occupations"
 Occupation.delete_all
 puts "Insert Occupations"
+ActiveRecord::Base.connection.execute('ALTER TABLE occupations AUTO_INCREMENT = 1')
 CSV.foreach('public/occupations.csv') do |row|
-  Occupation.create(:id => row[0], :name => row[1])
+  Occupation.create(:name => row[1])
 end
