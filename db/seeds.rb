@@ -70,3 +70,12 @@ ActiveRecord::Base.connection.execute('ALTER TABLE occupations AUTO_INCREMENT = 
 CSV.foreach('public/occupations.csv') do |row|
   Occupation.create(:name => row[1])
 end
+
+# 志望業界
+puts "Delete Industries"
+Industry.delete_all
+puts "Insert Industries"
+ActiveRecord::Base.connection.execute('ALTER TABLE industries AUTO_INCREMENT = 1')
+CSV.foreach('public/industries.csv') do |row|
+  Industry.create(:name => row[1])
+end
