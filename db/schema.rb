@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_03_020627) do
+ActiveRecord::Schema.define(version: 2018_11_07_125644) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -112,6 +112,12 @@ ActiveRecord::Schema.define(version: 2018_11_03_020627) do
     t.index ["lab_id"], name: "index_news_on_lab_id"
   end
 
+  create_table "occupations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "kana"
@@ -120,12 +126,13 @@ ActiveRecord::Schema.define(version: 2018_11_03_020627) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.text "description"
     t.text "refer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -165,5 +172,6 @@ ActiveRecord::Schema.define(version: 2018_11_03_020627) do
   add_foreign_key "majors", "courses"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
+  add_foreign_key "products", "users"
   add_foreign_key "works", "labs"
 end

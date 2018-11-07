@@ -60,3 +60,13 @@ CSV.foreach('public/cities.csv') do |row|
   prefecture = Prefecture.find_by(name: row[1])
   City.create(:id => row[0], :prefecture_id => prefecture.id, :name => row[2], :kana => row[3])
 end
+
+
+# 志望職種
+puts "Delete Occupations"
+Occupation.delete_all
+puts "Insert Occupations"
+ActiveRecord::Base.connection.execute('ALTER TABLE occupations AUTO_INCREMENT = 1')
+CSV.foreach('public/occupations.csv') do |row|
+  Occupation.create(:name => row[1])
+end
