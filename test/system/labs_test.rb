@@ -22,12 +22,10 @@ class LabsTest < ApplicationSystemTestCase
     fill_in "Fax", with: @lab.fax
     fill_in "Lat", with: @lab.lat
     fill_in "Lon", with: @lab.lon
-    fill_in "Main Image", with: @lab.main_image
     fill_in "Majar", with: @lab.majar
     fill_in "Message", with: @lab.message
     fill_in "Name", with: @lab.name
     fill_in "Purpose", with: @lab.purpose
-    fill_in "Sub Image", with: @lab.sub_image
     fill_in "Tel", with: @lab.tel
     click_on "Create Lab"
 
@@ -47,12 +45,10 @@ class LabsTest < ApplicationSystemTestCase
     fill_in "Fax", with: @lab.fax
     fill_in "Lat", with: @lab.lat
     fill_in "Lon", with: @lab.lon
-    fill_in "Main Image", with: @lab.main_image
     fill_in "Majar", with: @lab.majar
     fill_in "Message", with: @lab.message
     fill_in "Name", with: @lab.name
     fill_in "Purpose", with: @lab.purpose
-    fill_in "Sub Image", with: @lab.sub_image
     fill_in "Tel", with: @lab.tel
     click_on "Update Lab"
 

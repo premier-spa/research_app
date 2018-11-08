@@ -4,8 +4,6 @@ one:
   name: MyString
   majar: MyString
   about_us: MyString
-  main_image: MyText
-  sub_image: MyText
   purpose: MyString
   message: MyString
   facility: MyString
@@ -21,8 +19,6 @@ two:
   name: MyString
   majar: MyString
   about_us: MyString
-  main_image: MyText
-  sub_image: MyText
   purpose: MyString
   message: MyString
   facility: MyString

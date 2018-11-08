@@ -114,7 +114,7 @@ class LabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lab_params
-      params.require(:lab).permit(:name, :majar, :about_us, :main_image, :sub_image, :purpose, :message, :facility, :address, :tel, :fax, :email, :access, :lon, :lat)
+      params.require(:lab).permit(:name, :majar, :about_us, :purpose, :message, :facility, :address, :tel, :fax, :email, :access, :lon, :lat)
     end
 
     def authenticate_lab_user?

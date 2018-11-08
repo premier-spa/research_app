@@ -17,7 +17,7 @@ class LabsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create lab" do
     assert_difference('Lab.count') do
-      post labs_url, params: { lab: { about_us: @lab.about_us, access: @lab.access, address: @lab.address, email: @lab.email, facility: @lab.facility, fax: @lab.fax, lat: @lab.lat, lon: @lab.lon, main_image: @lab.main_image, majar: @lab.majar, message: @lab.message, name: @lab.name, purpose: @lab.purpose, sub_image: @lab.sub_image, tel: @lab.tel } }
+      post labs_url, params: { lab: { about_us: @lab.about_us, access: @lab.access, address: @lab.address, email: @lab.email, facility: @lab.facility, fax: @lab.fax, lat: @lab.lat, lon: @lab.lon, majar: @lab.majar, message: @lab.message, name: @lab.name, purpose: @lab.purpose, tel: @lab.tel } }
     end
 
     assert_redirected_to lab_url(Lab.last)
@@ -34,7 +34,7 @@ class LabsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update lab" do
-    patch lab_url(@lab), params: { lab: { about_us: @lab.about_us, access: @lab.access, address: @lab.address, email: @lab.email, facility: @lab.facility, fax: @lab.fax, lat: @lab.lat, lon: @lab.lon, main_image: @lab.main_image, majar: @lab.majar, message: @lab.message, name: @lab.name, purpose: @lab.purpose, sub_image: @lab.sub_image, tel: @lab.tel } }
+    patch lab_url(@lab), params: { lab: { about_us: @lab.about_us, access: @lab.access, address: @lab.address, email: @lab.email, facility: @lab.facility, fax: @lab.fax, lat: @lab.lat, lon: @lab.lon, majar: @lab.majar, message: @lab.message, name: @lab.name, purpose: @lab.purpose, tel: @lab.tel } }
     assert_redirected_to lab_url(@lab)
   end
 
