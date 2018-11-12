@@ -1,5 +1,5 @@
 class LabsController < ApplicationController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy, :people , :about, :contact]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :about, :contact]
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
   before_action :set_works, only: [:show]
@@ -77,12 +77,6 @@ class LabsController < ApplicationController
 
   # GET /labs/1/about
   def about
-  end
-
-  # GET /labs/1/people
-  def people
-    @lab_professors = @lab.users.where(user_type: 1)
-    @lab_students = @lab.users.where(user_type: 0)
   end
 
   # GET /labs/1/contact
