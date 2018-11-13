@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 		resources :albums
     resources :works
     member do
+      get 'people', to: 'people#index'
+      get 'people/:user_id', to: 'people#show'
       get 'about'
-      get 'people'
       get 'contact'
     end
   end
