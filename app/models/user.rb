@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :lab_users
   has_many :labs, through: :lab_users
+  belongs_to :prefecture
 
   # for ActiveStorage
   has_one_attached :image
