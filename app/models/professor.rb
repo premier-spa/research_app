@@ -1,2 +1,2 @@
-class Professors < User
+class Professor < User
 end
