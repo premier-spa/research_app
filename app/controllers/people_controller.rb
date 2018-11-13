@@ -2,8 +2,8 @@ class PeopleController < ApplicationController
   before_action :set_lab, only: [:index, :show]
   # 研究室メンバー一覧
   def index
-    @lab_professors = @lab.users.where(type: 1)
-    @lab_students = @lab.users.where(type: 0)
+    @lab_professors = @lab.professors
+    @lab_students = @lab.students
   end
 
   # 研究室メンバー詳細
