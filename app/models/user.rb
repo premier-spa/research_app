@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :labs, through: :lab_users
   belongs_to :prefecture
   belongs_to :major
+  belongs_to :industry
 
   # for ActiveStorage
   has_one_attached :image
