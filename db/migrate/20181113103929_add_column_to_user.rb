@@ -1,5 +1,7 @@
 class AddColumnToUser < ActiveRecord::Migration[5.2]
   def change
+    add_column :users, :first_name, :string
+    add_column :users, :last_name, :string
     add_column :users, :position, :string
     add_column :users, :career, :text
     add_reference :users, :major, foreign_key: true
