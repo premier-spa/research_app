@@ -6,7 +6,6 @@ class Lab < ApplicationRecord
     has_many :users, through: :lab_users
     has_many :students, through: :lab_users
     has_many :professors, through: :lab_users
-
     # 検索ページ用のクラスメソッド
     def self.search(search)
         if search
