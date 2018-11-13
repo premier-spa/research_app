@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   # set status of User
-  enum type: {student: 0, professor: 1, company: 2}
+  enum type: {Student: 0, Professor: 1, Company: 2}
   validates :type, presence: true
   validates :description, presence: true, length: {minimum: 5, maximum: 256}
 
