@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Association
   has_many :lab_users
   has_many :labs, through: :lab_users
   belongs_to :prefecture
@@ -18,6 +19,9 @@ class User < ApplicationRecord
   enum type: {Student: 0, Professor: 1, Company: 2}
   validates :type, presence: true
   validates :description, presence: true, length: {minimum: 5, maximum: 256}
+
+  # set status of job_hunting
+  enum job_hunting_status: {on: 0, off: 1}
 
   # user が研究室に所属しているか
   def has_labs?
