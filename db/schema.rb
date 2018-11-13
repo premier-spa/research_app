@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_131902) do
+ActiveRecord::Schema.define(version: 2018_11_13_103929) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -156,8 +156,27 @@ ActiveRecord::Schema.define(version: 2018_11_07_131902) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.integer "user_type"
+    t.integer "type"
+    t.string "position"
+    t.text "career"
+    t.bigint "major_id"
+    t.text "self_promotion"
+    t.text "skill"
+    t.text "quolification"
+    t.text "internship"
+    t.string "grade"
+    t.string "theme"
+    t.text "abstract"
+    t.text "part_time_job"
+    t.bigint "industry_id"
+    t.bigint "prefecture_id"
+    t.bigint "occupation_id"
+    t.integer "job_hunting_status"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["industry_id"], name: "index_users_on_industry_id"
+    t.index ["major_id"], name: "index_users_on_major_id"
+    t.index ["occupation_id"], name: "index_users_on_occupation_id"
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -179,5 +198,9 @@ ActiveRecord::Schema.define(version: 2018_11_07_131902) do
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
   add_foreign_key "products", "users"
+  add_foreign_key "users", "industries"
+  add_foreign_key "users", "majors"
+  add_foreign_key "users", "occupations"
+  add_foreign_key "users", "prefectures"
   add_foreign_key "works", "labs"
 end
