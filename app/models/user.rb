@@ -9,6 +9,7 @@ class User < ApplicationRecord
   belongs_to :prefecture
   belongs_to :major
   belongs_to :industry
+  belongs_to :occupation
 
   # for ActiveStorage
   has_one_attached :image
