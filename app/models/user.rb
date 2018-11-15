@@ -7,10 +7,10 @@ class User < ApplicationRecord
   # Association
   has_many :lab_users
   has_many :labs, through: :lab_users
-  belongs_to :prefecture
-  belongs_to :major
-  belongs_to :industry
-  belongs_to :occupation
+  belongs_to :prefecture, optional: true
+  belongs_to :major, optional: true
+  belongs_to :industry, optional: true
+  belongs_to :occupation, optional: true
 
   # for ActiveStorage
   has_one_attached :image

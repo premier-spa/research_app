@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(version: 2018_11_13_103929) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.integer "type"
+    t.string "first_name"
+    t.string "last_name"
     t.string "position"
     t.text "career"
     t.bigint "major_id"
