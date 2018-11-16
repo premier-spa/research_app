@@ -5,7 +5,7 @@
     <%= devise_error_messages! %>
 
   <!-- 全ユーザに共通の要素(Companyは考慮していない) -->
-    <div class="row">
+    <div class="row" id = "common_info">
       <div class="col s12">
         <div class="card col s12">
           <div class="input-field col s12">
@@ -43,6 +43,12 @@
             <%= f.label :type %></p>
             <%= f.select :type, User.types.keys %>
           </div>
+<!-- 
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">school</i>
+            <%= f.label :major %>
+            <%= f.collection_select :major_id, Major.all, :id, :name %>
+          </div> -->
 
           <div class="input-field col s12">
             <i class="material-icons prefix">edit</i>
@@ -51,7 +57,7 @@
           </div>
 
           <div class="input-field col s12">
-            <p><i class="material-icons prefix">tag_faces</i>
+            <p><i class="material-icons prefix">account_circle</i>
             <%= f.label :image %></p>
             <%= f.file_field :image %>
           </div>
@@ -59,13 +65,12 @@
       </div>
     </div>
 
-
     <!-- For Student -->
-    <div class="row">
+    <div class="row" id="student_info">
       <div class="col s12">
         <div class="card col s12">
           <div class="input-field col s12">
-            <i class="material-icons prefix">details</i>
+            <i class="material-icons prefix">school</i>
             <%= f.label :grade %>
             <%= f.text_field :grade, class: "materialize-textarea" %>
           </div>
@@ -83,7 +88,8 @@
           </div>
 
           <div class="input-field col s12">
-            <i class="material-icons prefix">details</i>
+            <i class="material-icons prefix">local_library
+</i>
             <%= f.label :quolification %>
             <%= f.text_area :quolification, class: "materialize-textarea" %>
           </div>
@@ -111,16 +117,44 @@
             <%= f.label :internship %>
             <%= f.text_area :internship, class: "materialize-textarea" %>
           </div>
+
+          <div class="input-field col s12">
+            <p><i class="material-icons prefix">directions_run</i>
+            <%= f.label :job_hunting_status %></p>
+            <%= f.select :job_hunting_status, User.job_hunting_statuses.keys %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">domain
+</i>
+            <%= f.label :industry %>
+            <%= f.collection_select :industry_id, Industry.all, :id, :name %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">location_on
+</i>
+            <%= f.label :workplace %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">perm_identity</i>
+            <%= f.label :occupation %>
+            <%= f.collection_select :occupation_id, Occupation.all, :id, :name %>
+          </div>
+
         </div>
       </div>
     </div>
 
     <!-- For Professor -->
-    <div class="row">
+    <div class="row" id="professor_info">
       <div class="col s12">
         <div class="card col s12">
           <div class="input-field col s12">
-            <i class="material-icons prefix">stars</i>
+            <i class="material-icons prefix">event_seat
+</i>
             <%= f.label :position %>
             <%= f.text_field :position %>
           </div>
@@ -142,5 +176,23 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $('#user_type').change(function() {
+    var user_type = document.getElementById("user_type").value;
+    if(user_type == 'Student') {
+      // document.getElementById('student_info').style.display = "";
+      // document.getElementById('professor_info').style.display = "none";
+    }else if(user_type == 'Professor') {
+      // document.getElementById('student_info').style.display = "none";
+      // document.getElementById('professor_info').style.display = "";
+      // document.getElementById('student_info').remove();
+      $('#common_info').append(document.getElementById('professor_info'));
+    }else if(user_type == 'Company'){
+      // document.getElementById('student_info').style.display = "none";
+      // document.getElementById('professor_info').style.display = "none";
+    }
+});
+</script>
 
 <%= render "devise/shared/links" %>
