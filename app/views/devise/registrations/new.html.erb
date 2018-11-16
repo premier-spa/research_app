@@ -81,9 +81,9 @@
     // create current user_type form
     user_type = document.getElementById("user_type").value;
     if(user_type == 'Student') {
-      $('#common_info').append("<%= j(render 'form_student', resource: resource) %>");
+      $('#common_info').after("<%= j(render 'form_student', resource: resource) %>");
     }else if(user_type == 'Professor') {
-      $('#common_info').append("<%= j(render 'form_professor', resource: resource) %>");
+      $('#common_info').after("<%= j(render 'form_professor', resource: resource) %>");
     }else if(user_type == 'Company'){
     }
   });
@@ -101,9 +101,9 @@
     // create current user_type form
     user_type = document.getElementById("user_type").value;
     if(user_type == 'Student') {
-      $('#common_info').append("<%= j(render 'form_student', resource: resource) %>");
+      $('#common_info').after("<%= j(render 'form_student', resource: resource) %>");
     }else if(user_type == 'Professor') {
-      $('#common_info').append("<%= j(render 'form_professor', resource: resource) %>");
+      $('#common_info').after("<%= j(render 'form_professor', resource: resource) %>");
     }else if(user_type == 'Company'){
     }
 });
