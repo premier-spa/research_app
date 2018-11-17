@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'invites/new'
+  get 'invites/create'
+  get 'invites/confirm'
+  get 'invites/complete'
   devise_for :users
   root to: 'homes#index'
   get 'homes/show'
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
       get 'people/:user_id', to: 'people#show'
       get 'about'
       get 'contact'
+      get 'invites/new', to: 'invites#new'
     end
   end
 
