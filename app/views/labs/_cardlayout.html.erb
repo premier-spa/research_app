@@ -10,10 +10,7 @@
       <div class="card-title">
         <h4> <%= title %> </h4>
       </div>
-      <% if current_user.image.attached? %>
-        <%= image_tag current_user.image, class: "responsive-img z-depth-1 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
-      <% end %>
+      <h5><%= sentence %></h5>
     </div>
-    <h5><%= sentence %></h5>
   </div>
 </div>
