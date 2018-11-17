@@ -17,12 +17,17 @@ Rails.application.routes.draw do
       get 'about'
       get 'contact'
       get 'invites/new', to: 'invites#new'
+      post 'invites', to: 'invites#create'
     end
   end
 
   # oen_time_token
-  post 'tokens/create', to: 'tokens#create'
-  post 'tokens/destroy', to: 'tokens#destroy'
+  post 'tokens', to: 'tokens#create'
+  delete 'tokens', to: 'tokens#destroy'
   post 'tokens/get', to: 'tokens#get'
 
+  # 開発時のメール確認
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end

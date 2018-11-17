@@ -1,6 +1,8 @@
 <h1>Invites#new</h1>
 <p>Find me in app/views/invites/new.html.erb</p>
 
-<form action="invites/create" method="post">
-    <input name="mail_address" type="email" />
-</form>
+<%= form_tag(invites_lab_url(@lab), :method => :post) do %>
+    <%= label_tag("招待メールアドレス") %>
+    <%= email_field_tag("mail_address") %>
+    <%= submit_tag("招待") %>
+<% end %>
