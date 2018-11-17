@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Association
-  has_many :lab_users
+  has_many :lab_users, dependent: :delete_all
   has_many :labs, through: :lab_users
   has_many :products, dependent: :destroy
   belongs_to :prefecture, optional: true
