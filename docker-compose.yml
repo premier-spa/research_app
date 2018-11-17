@@ -16,6 +16,29 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - search
+  search:
+    container_name: search
+    build: docker/elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    expose:
+      - 9300
+  kibana:
+    build: docker/kibana
+    ports:
+        - 5601:5601
 volumes:
+  esdata:
+    driver: local
   bundle:
     driver: local
