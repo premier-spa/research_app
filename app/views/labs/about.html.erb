@@ -4,7 +4,7 @@
     <h3>About us</h3>
   </div>
   <div class="col s12">
-    <%= render partial: "cardlayout", :locals => {:title => "教授からのメッセージ", :imagefile => "", :sentence => @lab.message } %>
-    <%= render partial: "cardlayout", :locals => {:title => "研究室の狙い", :imagefile => "", :sentence => @lab.purpose} %>
+    <%= render partial: "cardlayout", :locals => {:title => "教授からのメッセージ", :imagefile => "./../../professor_dummy.png", :sentence => @lab.message } %>
+    <%= render partial: "cardlayout", :locals => {:title => "研究室の狙い", :imagefile => "./../../lab_dummy.png", :sentence => @lab.purpose} %>
   </div>
 </div>
