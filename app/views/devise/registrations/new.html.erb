@@ -3,44 +3,181 @@
 <div class="row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
+  <!-- 全ユーザに共通の要素(Companyは考慮していない) -->
+    <div class="row" id = "common_info">
+      <div class="col s12">
+        <div class="card col s12">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">email</i>
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="input-field col s12">
+            <div class="col s6">
+              <i class="material-icons prefix">person</i>
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name %>
+            </div>
+            <div class="col s6">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name %>
+            </div>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+
+          <div class="input-field col s12">
+            <p><i class="material-icons prefix">settings</i>
+            <%= f.label :type %></p>
+            <%= f.select :type, User.types.keys %>
+          </div>
+
+          <div class="input-filed col s12" id="set_university">
+            <p><i class="material-icons prefix">school</i>
+            <%= label_tag :university %></p>
+            <%= select_tag :university_id ,options_from_collection_for_select(University.all, :id, :name)%>
+          </div>
+<!--           <div class="input-filed col s12">
+            <p><i class="material-icons prefix">school</i>
+            <%= label_tag :course %></p>
+            <%= select_tag :course ,options_from_collection_for_select(Course.all, :id, :name)%>
+          </div> -->
+
+<!--           <div class="input-filed col s12">
+            <p><i class="material-icons prefix">school</i>
+            <%= f.label :major %>
+            <%= f.collection_select :major_id, Major.all, :id, :name %>
+          </div> -->
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">edit</i>
+            <%= f.label :description %>
+            <%= f.text_field :description %>
+          </div>
+
+          <div class="input-field col s12">
+            <p><i class="material-icons prefix">account_circle</i>
+            <%= f.label :image %></p>
+            <%= f.file_field :image %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">vpn_key</i>
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <!-- For Student -->
+    <div class="row" id="student_info" style="display:none">
+      <div class="col s12">
+        <div class="card col s12">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">school</i>
+            <%= f.label :grade %>
+            <%= f.text_field :grade%>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">star</i>
+            <%= f.label :self_promotion %>
+            <%= f.text_area :self_promotion, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">laptop</i>
+            <%= f.label :skill %>
+            <%= f.text_area :skill, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">local_library
+  </i>
+            <%= f.label :quolification %>
+            <%= f.text_area :quolification, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">details</i>
+            <%= f.label :theme %>
+            <%= f.text_area :theme, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">details</i>
+            <%= f.label :abstract %>
+            <%= f.text_area :abstract, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <%= f.label :part_time_job %>
+            <%= f.text_area :part_time_job, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <%= f.label :internship %>
+            <%= f.text_area :internship, class: "materialize-textarea" %>
+          </div>
+
+          <div class="input-field col s12">
+            <p><i class="material-icons prefix">directions_run</i>
+            <%= f.label :job_hunting_status %></p>
+            <%= f.select :job_hunting_status, User.job_hunting_statuses.keys %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">domain
+  </i>
+            <%= f.label :industry %>
+            <%= f.collection_select :industry_id, Industry.all, :id, :name %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">location_on
+  </i>
+            <%= f.label :workplace %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
+          </div>
+
+          <div class="input-filed col s12">
+            <p><i class="material-icons prefix">perm_identity</i>
+            <%= f.label :occupation %>
+            <%= f.collection_select :occupation_id, Occupation.all, :id, :name %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="input-field col s12">
-      <i class="material-icons prefix">vpn_key</i>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <!-- For Professor -->
+    <div class="row" id="professor_info" style="display:none">
+      <div class="col s12">
+        <div class="card col s12">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">event_seat
+  </i>
+            <%= f.label :position %>
+            <%= f.text_field :position %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">business_center</i>
+            <%= f.label :career %>
+            <%= f.text_area :career, class: "materialize-textarea" %>
+          </div>
+        </div>
+      </div>
     </div>
 
-  <!-- email, password以外の要素 -->
-    <div class="input-field col s12">
-      <p><i class="material-icons prefix">settings</i>
-      <%= f.label :user_type%></p>
-      <%= f.select :user_type, User.user_types.keys %>
-    </div>
-
-    <div class="input-field col s12">
-      <i class="material-icons prefix">edit</i>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-    </div>
-
-    <div class="input-field col s12">
-      <p><i class="material-icons prefix">tag_faces</i>
-      <%= f.label :image %></p>
-      <%= f.file_field :image%>
-    </div>
-
+    <!-- Submit -->
     <div class="row">
       <div class="actions col s12">
         <%= f.submit "Sign up" , class: "btn grey-text text-darken-2 white" %>
@@ -49,58 +186,39 @@
   <% end %>
 </div>
 
-
-
-
-
-
-
-
-
-
-<!-- 
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div> -->
-
-<!-- email, password以外の要素 -->
-  <!-- <div class="field">
-    <%= f.label :user_type %><br />
-    <%= f.select :user_type, User.user_types.keys %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description%>
-  </div>
-
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %> -->
-
 <%= render "devise/shared/links" %>
+
+<script>
+  var user_type
+  // 読み込み時
+  $(document).ready(function() {
+    // create current user_type form
+    user_type = document.getElementById("user_type").value;
+    if(user_type == 'Student') {
+      document.getElementById('student_info').style.display = "";
+    }else if(user_type == 'Professor') {
+      document.getElementById('professor_info').style.display = "";
+    }else if(user_type == 'Company'){
+    }
+  });
+
+  // user_typeの変更時
+  $('#user_type').change(function() {
+    // delete previous user_type form
+    if(user_type == 'Student') {
+      document.getElementById('student_info').style.display = "none";
+    }else if(user_type == 'Professor') {
+      document.getElementById('professor_info').style.display = "none";
+    }else if(user_type == 'Company'){
+    }
+
+    // create current user_type form
+    user_type = document.getElementById("user_type").value;
+    if(user_type == 'Student') {
+      document.getElementById('student_info').style.display = "";
+    }else if(user_type == 'Professor') {
+      document.getElementById('professor_info').style.display = "";
+    }else if(user_type == 'Company'){
+    }
+});
+</script>

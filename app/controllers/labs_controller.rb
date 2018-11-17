@@ -45,7 +45,6 @@ class LabsController < ApplicationController
     if image = params[:lab][:image]
       @lab.image.attach(image)
     end
-
     respond_to do |format|
       if current_user.save
           format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
