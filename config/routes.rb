@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get 'contact'
       get 'invites/new', to: 'invites#new'
       post 'invites', to: 'invites#create'
+      get 'invites/confirm', to: 'invites#confirm'
+      get 'invites/complete', to: 'invites#complete'
     end
   end
 

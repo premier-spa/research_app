@@ -1,2 +1,4 @@
-あなたは研究室に招待されました。
+あなたは<%= @invited_lab.name %>研究室に招待されました。
 以下のリンクを押すと研究室のメンバーとなります。
+
+<%= invites_confirm_lab_url(@invited_lab, {token: @token}) %>
