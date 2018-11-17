@@ -15,4 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # oen_time_token
+  post 'tokens/create', to: 'tokens#create'
+  post 'tokens/destroy', to: 'tokens#destroy'
+  post 'tokens/get', to: 'tokens#get'
+
 end
