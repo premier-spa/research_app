@@ -20,6 +20,7 @@ class InvitesController < ApplicationController
       token: token
     })
     LabInviteMailer.send_lab_invitation(mail_address, token, @lab).deliver
+    redirect_to invites_send_lab_url(@lab)
   end
 
   # 招待メールクリック後に来るアクション

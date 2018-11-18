@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post 'invites', to: 'invites#create'
       get 'invites/confirm', to: 'invites#confirm'
       get 'invites/complete', to: 'invites#complete'
+      get 'invites/send', to: 'invites#send'
     end
   end
 

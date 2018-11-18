@@ -28,11 +28,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         # 研究室招待を伴う場合
-        lab_user = invite_lab(resource, params[:invited_lab_id]) if !params[:invited_lab_id].nil?
+        lab = Lab.find_by(id: params[:invited_lab_id])
+        lab_user = invite_lab(resource, lab.id) if !lab.nil?
         if lab_user.nil?
           respond_with resource, location: after_sign_up_path_for(resource)
         else
-          render(controller: 'invites', action: 'complete') and return
+          redirect_to invites_complete_lab_url(lab) and return
         end
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
