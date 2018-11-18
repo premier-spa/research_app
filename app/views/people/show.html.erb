@@ -13,39 +13,66 @@
 						flex-direction: row;">
       <i class="material-icons prefix" style="font-size: 240px;">account_circle</i>
 			<div style="font-size:15px">
-				<p>Name：Hoge Hugataro</p>
-				<p>University：Hoge University</p>
-				<p>Course/Major：Hoge</p>
-				<p>Grade：M2</p>
-				<p>Email：hoge@hoge.com</p>
-				<p>Introduction：</p>
+				<p>Name：<%= @user.last_name %> <%= @user.first_name %></p>
+				<p>University：</p>
+				<p>Course/Major：</p>
+				<% if @user.type == 'Professor' %>
+					<p>Career：<%= @user.career %></p>
+					<p>Email：<%= @user.email %></p>
+				<% elsif @user.type == 'Student' %>
+					<p>Grade：<%= @user.grade %></p>
+					<p>Email：<%= @user.email %></p>
+					<p>Introduction：</p>
+				<% end %>
 			</div>
     </div>
   </div>
 </div>
-<div class = "row">
-  <div class="col s12">
-    <ul class="tabs amber accent-4 tabs-transparent">
-      <li class="tab"><a class="active grey-text text-darken-2" href="#research">Research</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#appeal">Appeal</a></li>
-      <li class="tab"><a class="grey-text text-darken-2" href="#other">Other</a></li>
-    </ul>
-    <div id="research" class="col s12 white">
-      <h5>Thema：</h5>
-      <h5>Summary：</h5>
-      <h5>Summary：</h5>
-      <h5>Awards：</h5>
-      <h5>Publication：</h5>
-    </div>
-    <div id="appeal" class="col s12 white">
-      <h5>Self Promotion：</h5>
-      <h5>Skills：</h5>
-      <h5>Qualification：</h5>
-      <h5>Works URL：</h5>
-      <h5>Part-time job / Internship：</h5>
-    </div>
-    <div id="other" class="col s12 white">
-      <h5>Other：</h5>
-    </div>
-  </div>
-</div>
+<% if @user.type == 'Professor' %>
+	<div class = "row">
+		<div class="col s12">
+			<ul class="tabs amber accent-4 tabs-transparent">
+				<li class="tab"><a class="active grey-text text-darken-2" href="#about_us">About us</a></li>
+				<li class="tab"><a class="grey-text text-darken-2" href="#performance">Performance</a></li>
+			</ul>
+			<div id="about_us" class="col s12 white">
+				<h5>自己紹介：</h5>
+				<h5>研究室の狙い：</h5>
+				<h5>学生へのメッセージ：</h5>
+				<h5>連絡先：</h5>
+				<h5>所在地：</h5>
+			</div>
+			<div id="performance" class="col s12 white">
+				<h5>受賞・論文・学会発表等：</h5>
+				<h5>研究費：</h5>
+				<h5>研究設備：</h5>
+			</div>
+		</div>
+	</div>
+<% elsif @user.type == 'Student' %>
+	<div class = "row">
+		<div class="col s12">
+			<ul class="tabs amber accent-4 tabs-transparent">
+				<li class="tab"><a class="active grey-text text-darken-2" href="#research">Research</a></li>
+				<li class="tab"><a class="grey-text text-darken-2" href="#appeal">Appeal</a></li>
+				<li class="tab"><a class="grey-text text-darken-2" href="#other">Other</a></li>
+			</ul>
+			<div id="research" class="col s12 white">
+				<h5>Thema：<%= @user.theme %></h5>
+				<h5>Summary：<%= @user.abstract %></h5>
+				<h5>Awards：</h5>
+				<h5>Publication：</h5>
+			</div>
+			<div id="appeal" class="col s12 white">
+				<h5>Self Promotion：<%= @user.self_promotion %></h5>
+				<h5>Skills：<%= @user.skill %></h5>
+				<h5>Qualification：<%= @user.quolification %></h5>
+				<h5>Works URL：</h5>
+				<h5>Part-time job / Internship：<%= @user.internship %> / <%= @user.internship %></h5>
+			</div>
+			<div id="other" class="col s12 white">
+				<h5>Other：</h5>
+			</div>
+		</div>
+	</div>
+<% end %>
