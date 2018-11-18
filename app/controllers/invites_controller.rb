@@ -1,7 +1,12 @@
 class InvitesController < ApplicationController
   before_action :set_lab
 
+  # 研究室招待に使われる one_time_token の種類
   LAB_INVITE_TOKEN_TYPE = 0
+  # 招待ユーザでログインしていない場合に表示するエラーメッセージ
+  ERROR_MESSAGE_INVALID_USER = '招待ユーザでログインしてください。'
+  # 研究室招待が完了していない場合に表示するエラーメッセージ
+  ERROR_MESSAGE_MISS_INVITE_LAB = '研究室招待処理が完了しませんでした。'
 
   def new
   end
@@ -22,20 +27,24 @@ class InvitesController < ApplicationController
   # 登録のない人はユーザ登録にリダイレクト
   def confirm
     one_time_token = OneTimeToken.find_by(token: params[:token])
-    mail_address = one_time_token.mail_address
-    user = User.find_by(email: mail_address)
-    if user.nil?
-      # ユーザ新規ページへ
-      redirect_to controller: 'devise/registrations', action: 'new'
+    user = User.find_by(email: one_time_token.mail_address)
+
+    # ユーザ登録がない場合
+    return redirect_to new_user_registration_url(nil, {invited_lab_id: @lab.id, email: one_time_token.mail_address}) if user.nil?
+
+    # ログインしているかチェック
+    authenticate_user!
+
+    # ログインユーザが違う場合
+    return redirect_to action: 'new', alert: ERROR_MESSAGE_INVALID_USER if current_user.id != user.id
+
+    lab_user = LabUser.new({user_id: user.id, lab_id: @lab.id})
+    if lab_user.save
+      one_time_token.destroy
+      redirect_to action: 'complete'
     else
-      lab_user = LabUser.new({user_id: user.id, lab_id: @lab.id})
-      if lab_user.save
-        one_time_token.destroy
-        # ログインユーザを変える
-        redirect_to action: 'complete'
-      else
-        # do something
-      end
+      redirect_to action: 'new', alert: ERROR_MESSAGE_MISS_INVITE_LAB
+      return
     end
   end
 

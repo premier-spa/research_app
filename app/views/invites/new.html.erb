@@ -1,6 +1,12 @@
 <h1>Invites#new</h1>
 <p>Find me in app/views/invites/new.html.erb</p>
 
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <%= form_tag(invites_lab_url(@lab), :method => :post) do %>
     <%= label_tag("招待メールアドレス") %>
     <%= email_field_tag("mail_address") %>
