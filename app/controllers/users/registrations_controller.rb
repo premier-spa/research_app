@@ -5,14 +5,46 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # email がパラメータにある場合
+    if !params[:email].nil?
+      @email = params[:email]
+    end
+    # 招待先の lab がある場合
+    if !params[:invited_lab_id].nil?
+      @invited_lab_id = params[:invited_lab_id]
+    end
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  # source: https://github.com/plataformatec/devise/blob/master/app/controllers/devise/registrations_controller.rb
+  def create
+    build_resource(sign_up_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        # 研究室招待を伴う場合
+        lab_user = invite_lab(resource, params[:invited_lab_id]) if !params[:invited_lab_id].nil?
+        if lab_user.nil?
+          respond_with resource, location: after_sign_up_path_for(resource)
+        else
+          render(controller: 'invites', action: 'complete') and return
+        end
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -38,7 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -59,4 +91,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def invite_lab(user, invited_lab_id)
+    # ユーザ再取得
+    user = User.find_by(email: user.email)
+    lab = Lab.find(invited_lab_id)
+    one_time_token = OneTimeToken.find_by(mail_address: user.email)
+    # nil チェック
+    lab_user = LabUser.new({user_id: user.id, lab_id: lab.id})
+    if lab_user.save
+      one_time_token.destroy
+      return lab_user
+    else
+      return nil
+    end
+  end
 end
