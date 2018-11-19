@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
 
   # 研究室メンバー詳細
   def show
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     # 研究室所属メンバー以外のユーザを指定された場合研究室トップに遷移
     if !@lab.is_lab_user?(@user)
       redirect_to lab_url(@lab)
@@ -17,6 +17,6 @@ class PeopleController < ApplicationController
 
   private
   def set_lab
-    @lab = Lab.find(params[:id])
+    @lab = Lab.find(params[:lab_id])
   end
 end

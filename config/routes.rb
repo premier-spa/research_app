@@ -13,9 +13,10 @@ Rails.application.routes.draw do
     resources :news
 		resources :albums
     resources :works
+    resources :people, only: [:index, :show]
     member do
-      get 'people', to: 'people#index'
-      get 'people/:user_id', to: 'people#show'
+      # get 'people', to: 'people#index'
+      # get 'people/:user_id', to: 'people#show'
       get 'about'
       get 'contact'
       get 'invites/new', to: 'invites#new'
