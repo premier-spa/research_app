@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :lab_users, dependent: :delete_all
   has_many :labs, through: :lab_users
   has_many :products, dependent: :destroy
+  has_many :news, dependent: :destroy
   belongs_to :prefecture, optional: true
   belongs_to :major, optional: true
   belongs_to :industry, optional: true

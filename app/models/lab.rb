@@ -2,7 +2,7 @@ require 'elasticsearch/model'
 
 class Lab < ApplicationRecord
     # associations
-    has_many :news, dependent: :destroy
+    #has_many :news, dependent: :destroy
     has_many :works, dependent: :destroy
     has_one_attached :image
     has_many :lab_users, dependent: :delete_all
