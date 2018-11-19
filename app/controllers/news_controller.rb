@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
-  before_action :set_lab
+  before_action :set_user
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /news
@@ -65,8 +65,8 @@ class NewsController < ApplicationController
     end
 
     # lab を取得
-    def set_lab
-      @lab = Lab.find(params[:lab_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
