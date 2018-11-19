@@ -36,11 +36,11 @@
 				<li class="tab"><a class="grey-text text-darken-2" href="#performance">Performance</a></li>
 			</ul>
 			<div id="about_us" class="col s12 white">
-				<h5>自己紹介：</h5>
-				<h5>研究室の狙い：</h5>
-				<h5>学生へのメッセージ：</h5>
-				<h5>連絡先：</h5>
-				<h5>所在地：</h5>
+				<h5>自己紹介：</h5><%= @lab.about_us %>
+				<h5>研究室の狙い：</h5><%= @lab.purpose %>
+				<h5>学生へのメッセージ：</h5><%= @lab.message %>
+				<h5>連絡先：</h5><%= @lab.tel %> / <%= @lab.email %>
+				<h5>所在地：</h5><%= @lab.address %>
 			</div>
 			<div id="performance" class="col s12 white">
 				<h5>受賞・論文・学会発表等：</h5>
@@ -58,17 +58,22 @@
 				<li class="tab"><a class="grey-text text-darken-2" href="#other">Other</a></li>
 			</ul>
 			<div id="research" class="col s12 white">
-				<h5>Thema：<%= @user.theme %></h5>
-				<h5>Summary：<%= @user.abstract %></h5>
+				<h5>Thema：</h5><%= @user.theme %>
+				<h5>Summary：</h5><%= @user.abstract %>
 				<h5>Awards：</h5>
 				<h5>Publication：</h5>
 			</div>
 			<div id="appeal" class="col s12 white">
-				<h5>Self Promotion：<%= @user.self_promotion %></h5>
-				<h5>Skills：<%= @user.skill %></h5>
-				<h5>Qualification：<%= @user.quolification %></h5>
+				<h5>Self Promotion：</h5><%= @user.self_promotion %>
+				<h5>Skills：</h5><%= @user.skill %>
+				<h5>Qualification：</h5><%= @user.quolification %>
 				<h5>Works URL：</h5>
-				<h5>Part-time job / Internship：<%= @user.internship %> / <%= @user.internship %></h5>
+				<% @user.products.each do |product| %>
+					<%= product.name %>：<%= product.description %>
+					<br>
+					<%= product.refer %>
+				<% end %>
+				<h5>Part-time job / Internship：</h5><%= @user.part_time_job %> / <%= @user.internship %>
 			</div>
 			<div id="other" class="col s12 white">
 				<h5>Other：</h5>
