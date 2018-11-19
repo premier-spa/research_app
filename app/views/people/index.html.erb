@@ -16,12 +16,12 @@
               <% end %>
             <div class="card-stacked">
               <div class="card-content">
-                <span>Name : Last First</span>
-                <p>Position : 教授, 准教授 etc.</p>
+                <span>Name : <%= lab_professor.last_name %> <%= lab_professor.first_name %></span>
+                <p>Position : <%= lab_professor.position %> </p>
                 <p>Email : <%= lab_professor.email %></p>
               </div>
               <div class="card-action">
-                <a href="#">プロフィールへ</a>
+                <%= link_to 'プロフィールへ', lab_person_path(@lab, lab_professor) %>
               </div>
             </div>
           </div>
@@ -56,11 +56,11 @@
                 <% end %>
               <div class="card-stacked">
                 <div class="card-content">
-                  <span>Name : Last First (M1)</span>
+                  <span>Name :<%= lab_student.last_name %> <%= lab_student.first_name %> （<%= lab_student.grade %>）</span>
                   <p>Email : <%= lab_student.email %></p>
                 </div>
                 <div class="card-action">
-                  <a href="#">プロフィールへ</a>
+                  <%= link_to 'プロフィールへ', lab_person_path(@lab, lab_student) %>
                 </div>
               </div>
             </div>
@@ -80,5 +80,3 @@
     <div id="2008" class="col s12 white">2008</div>
   </div>
 </div>
-
-<h1>メンバー一覧</h1>
