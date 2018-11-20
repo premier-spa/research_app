@@ -6,7 +6,7 @@ class LabsController < ApplicationController
 
   # lab のメンバーではない人がアクセスしたときに弾く
   before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :new]
 
   # 検索 1 ページあたりの研究室数
   PER_PAGE_LABS_NUM = 5
