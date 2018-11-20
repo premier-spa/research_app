@@ -6,7 +6,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.where(lab_id: params[:lab_id])
   end
 
   # GET /news/1

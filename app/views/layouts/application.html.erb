@@ -42,12 +42,12 @@
                             <div class="nav-content">
                                 <div id="nav-mobile" class="row hide-on-med-and-down">
                                     <div class="col s1 center"><%= link_to 'ホーム', lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to '研究室について', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s2 center"><%= link_to '研究室について', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to '研究内容', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to '実績', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'メンバー', lab_people_path(@lab), class: "grey-text text-darken-2" %></div>
                                     <div class="col s1 center"><%= link_to 'アルバム', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'お問い合わせ', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s2 center"><%= link_to 'お問い合わせ', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
                                 </div>
                             </div>
                         <% end %>
