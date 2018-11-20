@@ -12,17 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :テーマ名 %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :概要 %>
     <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :研究テーマの画像 %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
     <%= form.hidden_field :lab_id, value: @lab.id %>
-    <%= form.submit %>
+    <%= form.submit "完了" , class: "btn grey-text text-darken-2 white" %>
   </div>
 <% end %>
