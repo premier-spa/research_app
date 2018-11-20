@@ -99,17 +99,17 @@ class LabsController < ApplicationController
 
     # lab に紐づくニュース一覧を取得
     def set_news
-      @news = News.where(lab_id: params[:id])
+      @news = News.where(lab_id: params[:id]).limit(5)
     end
 
     # lab に紐づくアルバム一覧を取得
     def set_albums
-      @albums = Album.where(lab_id: params[:id])
+      @albums = Album.where(lab_id: params[:id]).limit(6)
     end
 
     # lab に紐づく研究内容一覧を取得
     def set_works
-      @works = Work.where(lab_id: params[:id])
+      @works = Work.where(lab_id: params[:id]).limit(6)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

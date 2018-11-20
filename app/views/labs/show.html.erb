@@ -27,139 +27,65 @@
 </div>
 
 <div class="row">
-  <h4>Works</h4>
-  <!-- カード１ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-1.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
-      </div>
-    </div>
-  </div>
-  <!-- カード２ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-2.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
+  <h5>研究内容</h5>
+  <% @works.each do |work| %>
+    <div class="col s12 m3 l2">
+      <div class="card hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <% if work.image.attached? %>
+            <%= image_tag work.image %>
+          <% else %>
+          <!-- 代替え画像 -->
+          <img class="activator" src="./../works_img/work-6.png">
+          <% end %>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%= work.name %><i class="material-icons right">more_vert</i></span>
+          <p><%= link_to '詳細', lab_work_path(@lab, work) %></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><%= work.name %><i class="material-icons right">close</i></span>
+          <p><%= work.description %></p>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- カード３ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-3.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
-      </div>
-    </div>
-  </div>
-  <!-- カード４ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-4.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
-      </div>
-    </div>
-  </div>
-  <!-- カード５ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-5.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
-      </div>
-    </div>
-  </div>
-  <!-- カード６ -->
-  <div class="col s2">
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <!-- 研究内容のトプ画を使う予定 -->
-        <img class="activator" src="./../works_img/work-6.png">
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Work Title<i class="material-icons right">more_vert</i></span>
-        <p><a href="#">Detail</a></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Work Title<i class="material-icons right">close</i></span>
-        <p>Here is Summary.</p>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </div>
 
 
 <div class="row">
-  <h4>News</h4>
-  <div class="col s12">
-    <div class="card horizontal hoverable">
-      <div class="card-image">
-        <!--  worksテーブルから読み込む予定 -->
-        <img class="responsive-img" src="./../works_img/work-8.png" style="width: 200px; height: auto;">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <div class="col s10">
-            <div class="card-title">
-              Here is Title.
-            </div>
-            <p>Here is summary</p>
-            <p>Here is date</p>
-          </div>
-          <div class="col s2">
-            <img class="responsive-img z-depth-1 circle" src="./../student-icon.png" style="width: 100px; height: auto;">
-          </div>
+  <h5>お知らせ</h5>
+  <% @news.each do |news| %>
+    <div class="col s12">
+      <div class="card horizontal hoverable">
+        <div class="card-image valign-wrapper">
+          <% if news.image.attached? %>
+            <%= image_tag news.image, class: "responsive-img vertical-center", style: "width: 200px; height: 200px; object-fit: cover;" %>
+          <% else %>
+            <img class="responsive-img" src="./../works_img/work-8.png" style="width: 200px; height: 200px; object-fit: cover">
+          <% end %>
+          <!--  worksテーブルから読み込む予定 -->
         </div>
-        <div class="card-action">
-          <a href="#">Detail</a>
+        <div class="card-stacked">
+          <div class="card-content">
+            <div class="card-title">
+              <%= news.title %>
+            </div>
+            <% if news.lab.image.attached? %>
+              <%= image_tag news.lab.image, class: "responsive-img z-depth-0 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+            <% else %>
+              <img class="responsive-img z-depth-0 right circle" src="./../../student-icon.png" style= "width: 64px; height: 64px; object-fit: cover;">
+            <% end %>
+            <p><%= news.description %></p>
+            <p><%= news.release_date %></p>
+          </div>
+          <div class="card-action">
+            <%= link_to '詳細', lab_news_path(@lab, news) %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <% if @lab.is_lab_user?(current_user) %>
