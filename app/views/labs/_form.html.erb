@@ -12,76 +12,76 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :研究室名 %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :majar %>
+    <%= form.label :所属専攻名 %>
     <%= form.text_field :majar %>
   </div>
 
   <div class="field">
-    <%= form.label :about_us %>
+    <%= form.label :研究室紹介文 %>
     <%= form.text_field :about_us %>
   </div>
 
   <div class="field">
-    <%= form.label :purpose %>
+    <%= form.label :研究室のねらい %>
     <%= form.text_field :purpose %>
   </div>
 
   <div class="field">
-    <%= form.label :message %>
+    <%= form.label :メッセージ %>
     <%= form.text_field :message %>
   </div>
 
   <div class="field">
-    <%= form.label :facility %>
+    <%= form.label :設備 %>
     <%= form.text_field :facility %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :住所 %>
     <%= form.text_field :address %>
   </div>
 
   <div class="field">
-    <%= form.label :tel %>
+    <%= form.label :電話番号 %>
     <%= form.text_field :tel %>
   </div>
 
   <div class="field">
-    <%= form.label :fax %>
+    <%= form.label :FAX %>
     <%= form.text_field :fax %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
+    <%= form.label :連絡先メールアドレス %>
     <%= form.text_field :email %>
   </div>
 
   <div class="field">
-    <%= form.label :access %>
+    <%= form.label :アクセス方法 %>
     <%= form.text_field :access %>
   </div>
 
   <div class="field">
-    <%= form.label :lon %>
+    <%= form.label :所在地の経度 %>
     <%= form.text_field :lon %>
   </div>
 
   <div class="field">
-    <%= form.label :lat %>
+    <%= form.label :所在地の緯度 %>
     <%= form.text_field :lat %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :研究室の画像 %>
     <%= form.file_field :image %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "研究室登録" , class: "btn grey-text text-darken-2 white"%>
   </div>
 <% end %>
