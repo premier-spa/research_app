@@ -82,6 +82,7 @@ class LabsController < ApplicationController
 
   # GET /labs/1/about
   def about
+    @lab_professor = @lab.professors.first
   end
 
   # GET /labs/1/contact

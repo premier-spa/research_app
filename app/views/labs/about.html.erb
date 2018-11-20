@@ -1,10 +1,14 @@
-<!-- デザイン用 -->
+<div style="height: 40px;">
+</div>
+<h4>研究室について</h4>
 <div class="row">
   <div class="col s12">
-    <h3>About us</h3>
   </div>
   <div class="col s12">
-    <%= render partial: "cardlayout", :locals => {:title => "教授からのメッセージ", :imagefile => "./../../professor_dummy.png", :sentence => @lab.message } %><br>
-    <%= render partial: "cardlayout", :locals => {:title => "研究室の狙い", :imagefile => "./../../lab_dummy.png", :sentence => @lab.purpose} %>
+    <% if @lab_professor.image.attached? && @lab.image.attached? %>
+      <%= render partial: "cardlayout", :locals => {:title => "教授からのメッセージ", :imagefile => @lab_professor.image, :sentence => @lab.message } %>
+      <%= render partial: "cardlayout", :locals => {:title => "研究室の狙い", :imagefile => @lab.image, :sentence => @lab.purpose} %>
+    <% end %>
+    <br>
   </div>
 </div>
