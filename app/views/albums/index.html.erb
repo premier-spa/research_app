@@ -1,10 +1,7 @@
-<!-- デザイン用 -->
+<div style="height: 40px;">
+</div>
+<h4>アルバム</h4>
 <div class = "row">
-  <div style="height: 40px;">
-  </div>
-  <div class="col s12">
-    <h3>Photos</h3>
-  </div>
   <div class="col s12">
     <% period = @albums.get_lab_albums(params[:lab_id]).get_album_period %>
     <ul class="tabs amber accent-4 tabs-transparent">
@@ -16,7 +13,7 @@
     <div id="all" class="white">
       <div class="row">
         <% @albums.get_lab_albums(params[:lab_id]).each do |album| %>
-          <div class="col s12 m6 l4">
+          <div class="col s12 m6 l3">
             <div class="card">
               <div class="card-image">
                 <% if album.images.attached? %>
@@ -27,7 +24,7 @@
               <div class="card-action">
                 <%= link_to '詳細', lab_album_path(@lab, album) %>
                 <%= link_to '編集', edit_lab_album_path(@lab, album) %>
-                <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: '本当によろしいですか?' } %>
               </div>
             </div>
           </div>
@@ -38,7 +35,7 @@
       <%= content_tag(:div, id: year, class: "white") do %>
         <div class="row">
           <% @albums.get_lab_albums(params[:lab_id], year).each do |album| %>
-            <div class="col s12 m6 l4">
+            <div class="col s12 m6 l3">
               <div class="card">
                 <div class="card-image">
                   <% if album.images.attached? %>
@@ -49,7 +46,7 @@
                 <div class="card-action">
                   <%= link_to '詳細', lab_album_path(@lab, album) %>
                   <%= link_to '編集', edit_lab_album_path(@lab, album) %>
-                  <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= button_to '削除', lab_album_path(@lab, album), method: :delete, data: { confirm: '本当によろしいですか?' } %>
                 </div>
               </div>
             </div>

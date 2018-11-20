@@ -12,27 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :タイトル %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :説明 %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :release_date %>
+    <%= form.label :発表日 %>
     <%= form.date_select :release_date %>
   </div>
 
   <div class="filed">
-    <%= form.label :category %>
+    <%= form.label :カテゴリー %>
     <%= form.collection_select :category_id, Category.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :実績の画像 %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
     <%= form.hidden_field :lab_id, value: @lab.id %>
-    <%= form.submit %>
+    <%= form.submit "完了", class: "btn grey-text text-darken-2 white" %>
   </div>
 <% end %>
