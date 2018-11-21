@@ -19,7 +19,6 @@ class User < ApplicationRecord
   # set status of User
   enum type: {Student: 0, Professor: 1, Company: 2}
   validates :type, presence: true
-  validates :description, presence: true, length: {minimum: 5, maximum: 256}
 
   # set status of job_hunting
   enum job_hunting_status: {on: 0, off: 1}

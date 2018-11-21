@@ -3,17 +3,17 @@ class CreateLabs < ActiveRecord::Migration[5.2]
     create_table :labs do |t|
       t.string :name
       t.string :majar
-      t.string :about_us
+      t.text :about_us
       t.text :main_image
       t.text :sub_image
-      t.string :purpose
-      t.string :message
-      t.string :facility
-      t.string :address
+      t.text :purpose
+      t.text :message
+      t.text :facility
+      t.text :address
       t.string :tel
       t.string :fax
       t.string :email
-      t.string :access
+      t.text :access
       t.float :lon
       t.float :lat
 

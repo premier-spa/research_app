@@ -32,7 +32,7 @@
                                     <li><%= link_to 'GoodLab', root_path, class: "grey-text text-darken-2 white" %></li>
                                 <% end %>
                                 <li><%= link_to current_user.id, homes_show_path, class: "btn grey-text text-darken-2 white" %></li>
-                                <li><%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to 'プロフィール設定', edit_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
@@ -41,13 +41,13 @@
                             <!-- メニュー -->
                             <div class="nav-content">
                                 <div id="nav-mobile" class="row hide-on-med-and-down">
-                                    <div class="col s1 center"><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'People', lab_people_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
-                                    <div class="col s1 center"><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'ホーム', lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s2 center"><%= link_to '研究室について', about_lab_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to '研究内容', lab_works_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to '実績', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'メンバー', lab_people_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s1 center"><%= link_to 'アルバム', lab_albums_path(@lab), class: "grey-text text-darken-2" %></div>
+                                    <div class="col s2 center"><%= link_to 'お問い合わせ', contact_lab_path(@lab), class: "grey-text text-darken-2" %></div>
                                 </div>
                             </div>
                         <% end %>
@@ -75,19 +75,19 @@
                     <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "grey-text text-darken-2" %></li>
                     <li><div class="divider"></div></li>
                     <% unless @lab.nil? || @lab.new_record? %>
-                        <li><%= link_to 'Home', lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'ホーム', lab_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'About us', about_lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to '研究室について', about_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Research', lab_works_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to '研究内容', lab_works_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Publications', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to '実績', lab_news_index_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'People', lab_people_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'メンバー', lab_people_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Photos', lab_albums_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'アルバム', lab_albums_path(@lab), class: "grey-text text-darken-2" %></li>
                         <li><div class="divider"></div></li>
-                        <li><%= link_to 'Contact us', contact_lab_path(@lab), class: "grey-text text-darken-2" %></li>
+                        <li><%= link_to 'お問い合わせ', contact_lab_path(@lab), class: "grey-text text-darken-2" %></li>
                     <% end %>
                 </ul>
             <% else %>
@@ -97,7 +97,7 @@
                             <%= link_to 'GoodLab', root_path, class: "brand-logo grey-text text-darken-2" %>
                             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons grey-text text-darken-2">menu</i></a>
                             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                <li><%= link_to 'サインアップ', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
+                                <li><%= link_to '会員登録', new_user_registration_path, class: "btn grey-text text-darken-2 white" %></li>
                                 <li><%= link_to 'ログイン', new_user_session_path, class: "btn grey-text text-darken-2 white" %></li>
                             </ul>
                         </div>
@@ -106,7 +106,7 @@
 
                 <!-- サイド ナビゲーションバー-->
                 <ul class="sidenav" id="mobile-demo">
-                    <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+                    <li><%= link_to '会員登録', new_user_registration_path %></li>
                     <li><%= link_to 'ログイン', new_user_session_path %></li>
                 </ul>
             <% end %>
@@ -123,7 +123,7 @@
         <footer class = "page-footer white">
             <div class="footer-copyright white grey-text text-darken-2">
                 <div class="container center">
-                    Copyright© KHKO Lab. All rights reserved.
+                    Copyright© KHKOH Lab. All rights reserved.
                 </div>
             </div>
         </footer>

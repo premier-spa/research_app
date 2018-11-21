@@ -6,10 +6,16 @@ class LabsController < ApplicationController
 
   # lab のメンバーではない人がアクセスしたときに弾く
   before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :new]
 
   # 検索 1 ページあたりの研究室数
   PER_PAGE_LABS_NUM = 5
+
+  # ホームで表示するニュース数
+  NEWS_IN_HOME_NUM = 5
+
+  # ホームで表示する研究内容数
+  WORKS_IN_HOME_NUM = 6
 
   # GET /labs
   # GET /labs.json
@@ -82,6 +88,7 @@ class LabsController < ApplicationController
 
   # GET /labs/1/about
   def about
+    @lab_professor = @lab.professors.first
   end
 
   # GET /labs/1/contact
@@ -98,7 +105,7 @@ class LabsController < ApplicationController
 
     # lab に紐づくニュース一覧を取得
     def set_news
-      @news = News.where(lab_id: params[:id])
+      @news = News.where(lab_id: params[:id]).limit(NEWS_IN_HOME_NUM)
     end
 
     # lab に紐づくアルバム一覧を取得
@@ -108,7 +115,7 @@ class LabsController < ApplicationController
 
     # lab に紐づく研究内容一覧を取得
     def set_works
-      @works = Work.where(lab_id: params[:id])
+      @works = Work.where(lab_id: params[:id]).limit(WORKS_IN_HOME_NUM)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

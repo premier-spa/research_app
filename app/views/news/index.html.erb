@@ -1,10 +1,7 @@
-<!-- デザイン用 -->
+<div style="height: 40px;">
+</div>
+<h4>実績</h4>
 <div class = "row">
-  <div style="height: 40px;">
-  </div>
-  <div class="col s12">
-    <h3>News</h3>
-  </div>
   <div class="col s12">
     <ul class="tabs amber accent-4 tabs-transparent">
       <li class="tab"><a class="active grey-text text-darken-2" href="#all">All</a></li>
@@ -24,20 +21,27 @@
       <% @news.each do |news| %>
         <div class="section">
             <div class="card horizontal z-depth-0";>
-              <div class="card-image">
-                <!-- テーブルから読み込む予定 -->
-                <img class="responsive-img" src="./../../news.png" style="width: 200px; height: auto; object-fit: cover">
+              <div class="card-image valign-wrapper">
+                <% if news.image.attached? %>
+                  <%= image_tag news.image, class: "responsive-img", style: "width: 200px; height: 200px; object-fit: cover;" %>
+                <% else %>
+                  <img class="responsive-img" src="./../../news.png" style="width: 200px; height: 200px; object-fit: cover">
+                <% end %>
               </div>
               <div class="card-stacked">
                 <div class ="card-content">
-                    <div class="card-title">
-                      <%= news.title %>
-                      <!-- テーブルから読み込む予定 -->
-                      <img class="responsive-img z-depth-1 right circle" src="./../../student-icon.png" style= "width: 64px; height: 64px; object-fit: cover;">
-                    </div>
-                    <p><%= news.description %></p>
-                    <p><%= news.release_date %></p>
-                    <p><%= news.category.name %></p>
+                  <div class="card-title">
+                    <%= news.title %>
+                  </div>
+                  <!-- 現在、labの画像を表示しているが、本来はuserの画像を表示するように要変更 -->
+                  <% if news.lab.image.attached? %>
+                    <%= image_tag news.lab.image, class: "responsive-img z-depth-0 right circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+                  <% else %>
+                    <img class="responsive-img z-depth-0 right circle" src="./../../student-icon.png" style= "width: 64px; height: 64px; object-fit: cover;">
+                  <% end %>
+                  <p><%= news.description %></p>
+                  <p><%= news.release_date %></p>
+                  <p><%= news.category.name %></p>
                 </div>
                 <div class="card-action">
                   <%= link_to '詳細', lab_news_path(@lab, news) %>
@@ -49,34 +53,7 @@
         </div>
       <% end %>
     </div>
-    <div id="2018" class="white">
-      <ul class="collapsible z-depth-0">
-        <% @news.each do |news| %>
-          <li>
-            <div class="collapsible-header">
-              <!-- テーブルから読み込む予定 -->
-              <i class="material-icons">star</i>
-              <span><%= news.title %>.  
-                <%= news.description %>
-                <%= news.release_date %>
-                <%= news.category.name %>
-              </span>
-            </div>
-            <div class="collapsible-body">
-              <span>
-                <img class="responsive-img circle" src="./../../student-icon.png" style="width: 30px; height: auto;">
-                Here is summary
-              </span>
-              <div class="right">
-                <%= link_to '詳細', lab_news_path(@lab, news) %>
-                <%= link_to '編集', edit_lab_news_path(@lab, news) %>
-                <%= link_to '削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <div id="2018" class="col s12 white">2018</div>
     <div id="2017" class="col s12 white">2017</div>
     <div id="2016" class="col s12 white">2016</div>
     <div id="2015" class="col s12 white">2015</div>
@@ -89,45 +66,6 @@
     <div id="2008" class="col s12 white">2008</div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<h1>News</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Release date</th>
-      <th>Category</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @news.each do |news| %>
-      <tr>
-        <td><%= news.title %></td>
-        <td><%= news.description %></td>
-        <td><%= news.release_date %></td>
-        <td><%= news.category.name %></td>
-        <td><%= link_to 'ニュース詳細へ', lab_news_path(@lab, news) %></td>
-        <td><%= link_to 'ニュース編集へ', edit_lab_news_path(@lab, news) %></td>
-        <td><%= link_to 'ニュース削除', lab_news_path(@lab, news), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
 
 <%= link_to 'ニュース作成', new_lab_news_path %>

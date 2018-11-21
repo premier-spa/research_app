@@ -1,20 +1,20 @@
-<h1>こんにちは、<%= current_user.id %>さん</h1>
-<p>ユーザー用ページです。</p>
+<h4>ユーザー用ページ</h4>
+<p>こんにちは、<%= current_user.id %>さん</p>
 
 <!-- Show user icon -->
 <% if current_user.image.attached? %>
   <p>
-    <strong>Your Icon:</strong>
+    <strong>アイコン画像:</strong>
     <%= image_tag current_user.image, :size => "100x100" %>
   </p>
 <% end %>
 
 
 <% if current_user.has_labs? %>
-    <h2>所属研究室一覧</h2>
+    <h4>所属研究室一覧</h4>
     <% current_user.labs.each do |lab| %>
-        <p><%= link_to lab.name, lab %></p>
+        <p><%= link_to lab.name, lab , class: "btn grey-text text-darken-2 white"%></p>
     <% end %>
 <% end %>
 
-<%= link_to '研究室作成', new_lab_path %>
+<%= link_to '研究室登録', new_lab_path, class: "btn grey-text text-darken-2 white" %>

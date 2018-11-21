@@ -2,7 +2,7 @@
   <div class="card-image">
     <!-- テーブルから読み込む予定 -->
     <!-- imagefileにカード内写真の場所を入力-->
-    <img class="responsive-img" src= <%= imagefile %> style="width: 200px; height: 200px; object-fit: cover">
+    <%= image_tag imagefile, class: "responsive-img", style: "width: 200px; height: 200px; object-fit: cover;" %>
   </div>
 
   <div class="card-stacked">

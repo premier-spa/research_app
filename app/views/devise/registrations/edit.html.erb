@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h4>ユーザ情報の設定</h4>
 <div class="row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -8,7 +8,7 @@
         <div class="card col s12">
           <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
-            <%= f.label :email %>
+            <%= f.label :メールアドレス %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -18,72 +18,72 @@
           <div class="input-field col s12">
             <div class="col s6">
               <i class="material-icons prefix">person</i>
-              <%= f.label :last_name %>
+              <%= f.label :姓 %>
               <%= f.text_field :last_name %>
             </div>
             <div class="col s6">
-              <%= f.label :first_name %>
+              <%= f.label :名 %>
               <%= f.text_field :first_name %>
             </div>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">vpn_key</i>
-            <%= f.label :password %>
+            <%= f.label :新しいパスワード %>
             <%= f.password_field :password, autocomplete: "new-password" %>
-            <p>(leave blank if you don't want to change it)
+            <p>※変更しない場合は入力は不要です。
             <% if @minimum_password_length %>
               <br />
-              <em><%= @minimum_password_length %> characters minimum</em>
+              <em>パスワードは<%= @minimum_password_length %>文字以上</em>
             <% end %>
             </p>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">vpn_key</i>
-            <%= f.label :password_confirmation %>
+            <%= f.label :新しいパスワードの再確認 %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">vpn_key</i>
-            <%= f.label :current_password %>
+            <%= f.label :現在のパスワード %>
             <%= f.password_field :current_password, autocomplete: "current-password" %>
-            <p>(we need your current password to confirm your changes)</p>
+            <p>※パスワードの変更には現在のパスワードを入力する必要があります。</p>
           </div>
 
           <div class="input-field col s12">
             <p><i class="material-icons prefix">settings</i>
-            <%= f.label :type %></p>
+            <%= f.label :ユーザ種別 %></p>
             <%= f.select :type, User.types.keys%>
           </div>
 
-          <div class="input-filed col s12" id="set_university">
+<!--           <div class="input-filed col s12" id="set_university">
             <p><i class="material-icons prefix">school</i>
-            <%= label_tag :university %></p>
+            <%= label_tag :大学 %></p>
             <%= select_tag :university_id ,options_from_collection_for_select(University.all, :id, :name)%>
-          </div>
+          </div> -->
 <!--           <div class="input-filed col s12">
             <p><i class="material-icons prefix">school</i>
-            <%= label_tag :course %></p>
+            <%= label_tag :学部・研究科 %></p>
             <%= select_tag :course ,options_from_collection_for_select(Course.all, :id, :name)%>
           </div> -->
 
 <!--           <div class="input-filed col s12">
             <p><i class="material-icons prefix">school</i>
-            <%= f.label :major %>
+            <%= f.label :学科・専攻 %>
             <%= f.collection_select :major_id, Major.all, :id, :name %>
           </div> -->
 
           <div class="input-field col s12">
             <i class="material-icons prefix">edit</i>
-            <%= f.label :description %>
+            <%= f.label :自己紹介 %>
             <%= f.text_field :description %>
           </div>
 
           <div class="input-field col s12">
             <p><i class="material-icons prefix">account_circle</i>
-            <%= f.label :image %></p>
+            <%= f.label :アイコン画像 %></p>
             <%= f.file_field :image %>
           </div>
         </div>
@@ -96,76 +96,76 @@
         <div class="card col s12">
           <div class="input-field col s12">
             <i class="material-icons prefix">school</i>
-            <%= f.label :grade %>
-            <%= f.text_field :grade%>
+            <%= f.label :学年 %>
+            <%= f.text_field :grade %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">star</i>
-            <%= f.label :self_promotion %>
+            <%= f.label :自己アピール %>
             <%= f.text_area :self_promotion, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">laptop</i>
-            <%= f.label :skill %>
+            <%= f.label :スキル %>
             <%= f.text_area :skill, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">local_library
   </i>
-            <%= f.label :quolification %>
+            <%= f.label :資格 %>
             <%= f.text_area :quolification, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">details</i>
-            <%= f.label :theme %>
+            <%= f.label :研究テーマ %>
             <%= f.text_area :theme, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">details</i>
-            <%= f.label :abstract %>
+            <%= f.label :研究概要 %>
             <%= f.text_area :abstract, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">business</i>
-            <%= f.label :part_time_job %>
+            <%= f.label :アルバイト歴 %>
             <%= f.text_area :part_time_job, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">business</i>
-            <%= f.label :internship %>
+            <%= f.label :インターンシップ歴 %>
             <%= f.text_area :internship, class: "materialize-textarea" %>
           </div>
 
           <div class="input-field col s12">
             <p><i class="material-icons prefix">directions_run</i>
-            <%= f.label :job_hunting_status %></p>
+            <%= f.label :就職活動の状況 %></p>
             <%= f.select :job_hunting_status, User.job_hunting_statuses.keys %>
           </div>
 
           <div class="input-filed col s12">
             <p><i class="material-icons prefix">domain
   </i>
-            <%= f.label :industry %>
+            <%= f.label :志望業界 %>
             <%= f.collection_select :industry_id, Industry.all, :id, :name %>
           </div>
 
           <div class="input-filed col s12">
             <p><i class="material-icons prefix">location_on
   </i>
-            <%= f.label :workplace %>
+            <%= f.label :志望勤務地 %>
             <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name %>
           </div>
 
           <div class="input-filed col s12">
             <p><i class="material-icons prefix">perm_identity</i>
-            <%= f.label :occupation %>
+            <%= f.label :志望職種 %>
             <%= f.collection_select :occupation_id, Occupation.all, :id, :name %>
           </div>
         </div>
@@ -177,15 +177,14 @@
       <div class="col s12">
         <div class="card col s12">
           <div class="input-field col s12">
-            <i class="material-icons prefix">event_seat
-  </i>
-            <%= f.label :position %>
+            <i class="material-icons prefix">event_seat</i>
+            <%= f.label :役職 %>
             <%= f.text_field :position %>
           </div>
 
           <div class="input-field col s12">
             <i class="material-icons prefix">business_center</i>
-            <%= f.label :career %>
+            <%= f.label :キャリア %>
             <%= f.text_area :career, class: "materialize-textarea" %>
           </div>
         </div>
@@ -195,17 +194,17 @@
     <!-- Submit -->
     <div class="row">
       <div class="actions col s12">
-        <%= f.submit "Update" , class: "btn grey-text text-darken-2 white" %>
+        <%= f.submit "更新" , class: "btn grey-text text-darken-2 white" %>
       </div>
     </div>
   <% end %>
 </div>
 
-<h3>Cancel my account</h3>
+<h4>アカウント削除</h4>
 
-<p> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn grey-text text-darken-2 white" %></p>
+<p> <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にアカウントを削除してよろしいですか?" }, method: :delete , class: "btn grey-text text-darken-2 white" %></p>
 
-<%= link_to "Back", :back , class: "btn grey-text text-darken-2 white"%>
+<%= link_to "戻る", :back , class: "btn grey-text text-darken-2 white"%>
 
 <script>
   var user_type

@@ -6,7 +6,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.where(lab_id: params[:lab_id])
   end
 
   # GET /news/1
@@ -71,6 +71,6 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :description, :release_date, :category_id, :lab_id)
+      params.require(:news).permit(:title, :description, :release_date, :category_id, :lab_id, :image)
     end
 end

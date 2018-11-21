@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.where(lab_id: params[:lab_id])
   end
   # def index
   #   @works = Work.where(lab_id: params[:lab_id])
@@ -74,6 +74,6 @@ class WorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      params.require(:work).permit(:name, :description, :lab_id)
+      params.require(:work).permit(:name, :description, :lab_id, :image)
     end
 end

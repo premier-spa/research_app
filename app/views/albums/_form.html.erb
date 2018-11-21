@@ -1,15 +1,13 @@
-<h4>Album</h4>
-
 <%= form_with model: [@lab, @album], local: true  do |form| %>
   <div class="input-field col s12">
     <i class="material-icons prefix">edit</i>
-    <%= form.label :name %>
+    <%= form.label :タイトル %>
     <%= form.text_field :name %>
   </div>
 
   <div class="input-field col s12">
     <p><i class="material-icons prefix">tag_faces</i>
-    <%= form.label :images %>
+    <%= form.label :アルバム画像 %>
     <%= form.file_field :images, multiple: true %>
     <%= form.hidden_field :lab_id, value: @lab.id %>
   </div>
@@ -31,7 +29,7 @@
 
   <div class="row">
     <div class="actions col s12">
-      <%= form.submit "Create Album" , class: "btn grey-text text-darken-2 white" %>
+      <%= form.submit "完了" , class: "btn grey-text text-darken-2 white" %>
     </div>
   </div>
 <% end %>
