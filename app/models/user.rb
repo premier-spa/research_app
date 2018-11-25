@@ -25,10 +25,7 @@ class User < ApplicationRecord
 
   # user が研究室に所属しているか
   def has_labs?
-    if self.labs
-        return true
-    end
-    return false
+    return !self.labs.empty?
   end
 
   def get_prime_lab
