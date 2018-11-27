@@ -13,7 +13,8 @@
 <% if current_user.has_labs? %>
     <h4>所属研究室一覧</h4>
     <% current_user.labs.each do |lab| %>
-        <p><%= link_to lab.name, lab , class: "btn grey-text text-darken-2 white"%></p>
+        <p><%= link_to lab.name, lab , class: "btn grey-text text-darken-2 white"%>
+        <%= link_to 'ニュース作成', new_lab_news_path(lab.id) %></p><br>
     <% end %>
 <% end %>
 
