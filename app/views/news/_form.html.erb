@@ -38,6 +38,7 @@
 
   <div class="actions">
     <%= form.hidden_field :lab_id, value: @lab.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.submit "完了", class: "btn grey-text text-darken-2 white" %>
   </div>
 <% end %>
