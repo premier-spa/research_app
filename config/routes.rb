@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   # api for ajax
   get 'courses', to: 'courses#index'
+  get 'majors', to: 'majors#index'
 
   # oen_time_token
   post 'tokens', to: 'tokens#create'
