@@ -17,8 +17,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :大学 %>
+    <%= select_tag 'university', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;", prompt: "選択してください" %>
+  </div>
+
+  <div id ="course_field" class="field" style="display: none">
+    <%= form.label :コース %>
+    <select id="course" style="display: block;"></select>
+  </div>
+
+  <div id ="major_field" class="field" style="display: none">
     <%= form.label :所属専攻名 %>
-    <%= form.text_field :majar %>
+    <select id="major" name="lab[major_id]" style="display: block;"></select>
   </div>
 
   <div class="field">
@@ -85,3 +95,5 @@
     <%= form.submit "完了" , class: "btn grey-text text-darken-2 white" %>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'major' %>

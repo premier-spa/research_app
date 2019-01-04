@@ -3,6 +3,7 @@ class LabsController < ApplicationController
   before_action :set_news, only: [:show]
   before_action :set_albums, only: [:show]
   before_action :set_works, only: [:show]
+  before_action :set_universities, only: [:new, :edit]
 
   # lab のメンバーではない人がアクセスしたときに弾く
   before_action :authenticate_lab_user?, only: [:edit, :update, :destroy]
@@ -118,9 +119,13 @@ class LabsController < ApplicationController
       @works = Work.where(lab_id: params[:id]).limit(WORKS_IN_HOME_NUM)
     end
 
+    def set_universities
+      @universities = University.all
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def lab_params
-      params.require(:lab).permit(:name, :majar, :about_us, :purpose, :message, :facility, :address, :tel, :fax, :email, :access, :lon, :lat)
+      params.require(:lab).permit(:name, :major_id, :about_us, :purpose, :message, :facility, :address, :tel, :fax, :email, :access, :lon, :lat)
     end
 
     def authenticate_lab_user?

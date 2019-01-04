@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_27_122019) do
+ActiveRecord::Schema.define(version: 2019_01_04_102826) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 2018_11_27_122019) do
 
   create_table "labs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "majar"
     t.text "about_us"
     t.text "purpose"
     t.text "message"
@@ -96,6 +95,8 @@ ActiveRecord::Schema.define(version: 2018_11_27_122019) do
     t.float "lat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "major_id"
+    t.index ["major_id"], name: "index_labs_on_major_id"
   end
 
   create_table "majors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -206,6 +207,7 @@ ActiveRecord::Schema.define(version: 2018_11_27_122019) do
   add_foreign_key "courses", "universities"
   add_foreign_key "lab_users", "labs"
   add_foreign_key "lab_users", "users"
+  add_foreign_key "labs", "majors"
   add_foreign_key "majors", "courses"
   add_foreign_key "news", "categories"
   add_foreign_key "news", "labs"
