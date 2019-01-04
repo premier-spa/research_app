@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # api for ajax
+  get 'courses', to: 'courses#index'
+
   # oen_time_token
   post 'tokens', to: 'tokens#create'
   delete 'tokens', to: 'tokens#destroy'

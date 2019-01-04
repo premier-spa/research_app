@@ -21,14 +21,14 @@
     <%= select_tag 'university', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
   </div>
 
-  <div class="field" style="display: none">
+  <div id ="course_field" class="field" style="display: none">
     <%= form.label :コース %>
-    <%= select_tag 'cources', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
+    <select id="course" style="display: block;"></select>
   </div>
 
   <div class="field" style="display: none">
     <%= form.label :所属専攻名 %>
-    <%= select_tag 'major', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
+    <select id="major" name="lab[major]"></select>
   </div>
 
   <div class="field">
@@ -95,3 +95,5 @@
     <%= form.submit "完了" , class: "btn grey-text text-darken-2 white" %>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'major' %>
