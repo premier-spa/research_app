@@ -17,8 +17,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :大学 %>
+    <%= select_tag 'university', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
+  </div>
+
+  <div class="field" style="display: none">
+    <%= form.label :コース %>
+    <%= select_tag 'cources', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
+  </div>
+
+  <div class="field" style="display: none">
     <%= form.label :所属専攻名 %>
-    <%= form.text_field :majar %>
+    <%= select_tag 'major', options_from_collection_for_select(@universities, :id, :name) , style: "display: block;" %>
   </div>
 
   <div class="field">
